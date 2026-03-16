@@ -36,5 +36,6 @@ export type FishboneEditorState = {
   contextLine: string;
   title: string;
   notes: string;
+  attachedUndefinedNodeIds: string[];
   error: string;
 };

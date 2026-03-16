@@ -5,9 +5,11 @@ import FishboneDrawer from "./FishboneDrawer";
 import { useFishboneEditor } from "../hooks/fishbone/useFishboneEditor";
 import { useFishboneEditorSubmission } from "../hooks/fishbone/useFishboneEditorSubmission";
 import { useFishboneGraphState } from "../hooks/fishbone/useFishboneGraphState";
+import { useFishboneNodeDeletion } from "../hooks/fishbone/useFishboneNodeDeletion";
 import { useFishbonePersistence } from "../hooks/fishbone/useFishbonePersistence";
 import { useFishboneSelectedNode } from "../hooks/fishbone/useFishboneSelectedNode";
 import { useFishboneSelection } from "../hooks/fishbone/useFishboneSelection";
+import { listUndefinedParentNodes } from "../lib/fishbone-graph";
 import type { FishboneDocument } from "../lib/fishbone-types";
 
 type FishboneBoardProps = {
@@ -37,6 +39,7 @@ export default function FishboneBoard({
     closeEditor,
     updateEditorField,
     setEditorError,
+    toggleAttachedUndefinedNode,
   } = useFishboneEditor();
   const { isSaving, saveError, clearSaveError, persistGraph } =
     useFishbonePersistence({
@@ -61,6 +64,39 @@ export default function FishboneBoard({
     closeEditor,
     setEditorError,
   });
+  const { deleteNode } = useFishboneNodeDeletion({
+    graph,
+    applyGraph,
+    persistGraph,
+    clearSaveError,
+    reconcileSelection,
+  });
+  const undefinedParentNodes = listUndefinedParentNodes(graph);
+  const canDeleteSelectedNode = selectedNode.id !== graph.rootId;
+
+  async function handleDeleteNode(nodeId: string): Promise<void> {
+    const targetNode = graph.nodes[nodeId];
+
+    if (!targetNode || targetNode.id === graph.rootId) {
+      return;
+    }
+
+    const confirmed = window.confirm(
+      targetNode.childIds.length > 0
+        ? "このノードを削除すると、子ノードは親が undefined の状態で残ります。続行しますか？"
+        : "このノードを削除します。続行しますか？",
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    if (editor.isOpen && editor.targetNodeId === nodeId) {
+      closeEditor();
+    }
+
+    await deleteNode(nodeId);
+  }
 
   return (
     <main className="workspace-shell">
@@ -85,6 +121,15 @@ export default function FishboneBoard({
               >
                 トップに戻る
               </button>
+              {canDeleteSelectedNode ? (
+                <button
+                  type="button"
+                  className="danger-button"
+                  onClick={() => void handleDeleteNode(selectedNode.id)}
+                >
+                  このノードを削除
+                </button>
+              ) : null}
             </div>
           </div>
 
@@ -155,6 +200,37 @@ export default function FishboneBoard({
               </p>
             </div>
           )}
+
+          {undefinedParentNodes.length > 0 ? (
+            <div className="undefined-parent-panel">
+              <div className="section-row compact">
+                <h3>親が undefined のノード</h3>
+                <p>
+                  親ノードが削除されて切り離された要素です。新しいカードの追加時に子として接続できます。
+                </p>
+              </div>
+
+              <div className="undefined-parent-list">
+                {undefinedParentNodes.map((node) => (
+                  <article key={node.id} className="undefined-parent-card">
+                    <div className="undefined-parent-copy">
+                      <span className="eyebrow">親: undefined</span>
+                      <strong>{node.title || "無題の要素"}</strong>
+                      <p>{node.notes.trim() || "備考はまだありません。"}</p>
+                      <span className="card-meta">下位カード {node.childIds.length} 件</span>
+                    </div>
+                    <button
+                      type="button"
+                      className="text-button"
+                      onClick={() => openEditEditor(node)}
+                    >
+                      編集
+                    </button>
+                  </article>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </section>
       </div>
 
@@ -169,9 +245,13 @@ export default function FishboneBoard({
 
       <FishboneDrawer
         editor={editor}
+        undefinedParentNodes={undefinedParentNodes}
         onChange={updateEditorField}
+        onToggleAttachUndefinedNode={toggleAttachedUndefinedNode}
         onClose={closeEditor}
         onSave={submitEditor}
+        onDelete={() => handleDeleteNode(editor.targetNodeId)}
+        canDelete={editor.mode === "edit" && editor.targetNodeId !== graph.rootId}
       />
     </main>
   );

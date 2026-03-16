@@ -56,32 +56,45 @@ export function buildFishboneGraph(document: FishboneDocument): FishboneGraph {
 
 export function graphToFishboneDocument(graph: FishboneGraph): FishboneDocument {
   const items: FishboneDocument["items"] = [];
-  const stack = [graph.rootId];
+  const visited = new Set<string>();
 
-  while (stack.length > 0) {
-    const nodeId = stack.pop();
+  function pushSubtree(startNodeId: string): void {
+    const stack = [startNodeId];
 
-    if (!nodeId) {
-      continue;
-    }
+    while (stack.length > 0) {
+      const nodeId = stack.pop();
 
-    const node = graph.nodes[nodeId];
+      if (!nodeId || visited.has(nodeId)) {
+        continue;
+      }
 
-    if (!node) {
-      continue;
-    }
+      const node = graph.nodes[nodeId];
 
-    items.push({
-      id: node.id,
-      parentId: node.parentId,
-      title: node.title,
-      notes: node.notes,
-    });
+      if (!node) {
+        continue;
+      }
 
-    for (let index = node.childIds.length - 1; index >= 0; index -= 1) {
-      stack.push(node.childIds[index]);
+      visited.add(nodeId);
+      items.push({
+        id: node.id,
+        parentId: node.parentId,
+        title: node.title,
+        notes: node.notes,
+      });
+
+      for (let index = node.childIds.length - 1; index >= 0; index -= 1) {
+        stack.push(node.childIds[index]);
+      }
     }
   }
+
+  pushSubtree(graph.rootId);
+
+  Object.keys(graph.nodes).forEach((nodeId) => {
+    if (!visited.has(nodeId)) {
+      pushSubtree(nodeId);
+    }
+  });
 
   return {
     rootId: graph.rootId,
@@ -147,6 +160,7 @@ export function appendChildNode(
   graph: FishboneGraph,
   parentId: string,
   newNode: FishboneNodeRecord,
+  attachedUndefinedNodeIds: string[] = [],
 ): FishboneGraph {
   const parentNode = graph.nodes[parentId];
 
@@ -154,15 +168,87 @@ export function appendChildNode(
     return graph;
   }
 
-  return {
-    ...graph,
-    nodes: {
-      ...graph.nodes,
-      [parentId]: {
-        ...parentNode,
-        childIds: [...parentNode.childIds, newNode.id],
-      },
-      [newNode.id]: newNode,
+  const attachableChildIds = attachedUndefinedNodeIds.filter((childId) => {
+    const childNode = graph.nodes[childId];
+    return Boolean(childNode && childNode.parentId === null && childId !== graph.rootId);
+  });
+  const attachableChildIdSet = new Set(attachableChildIds);
+  const nextNodes: FishboneGraph["nodes"] = {
+    ...graph.nodes,
+    [parentId]: {
+      ...parentNode,
+      childIds: [...parentNode.childIds, newNode.id],
+    },
+    [newNode.id]: {
+      ...newNode,
+      childIds: attachableChildIds,
     },
   };
+
+  attachableChildIds.forEach((childId) => {
+    const childNode = graph.nodes[childId];
+
+    if (!childNode || !attachableChildIdSet.has(childId)) {
+      return;
+    }
+
+    nextNodes[childId] = {
+      ...childNode,
+      parentId: newNode.id,
+    };
+  });
+
+  return {
+    ...graph,
+    nodes: nextNodes,
+  };
+}
+
+export function removeNode(graph: FishboneGraph, nodeId: string): FishboneGraph {
+  const node = graph.nodes[nodeId];
+
+  if (!node || nodeId === graph.rootId) {
+    return graph;
+  }
+
+  const nextNodes: FishboneGraph["nodes"] = { ...graph.nodes };
+
+  if (node.parentId) {
+    const parentNode = graph.nodes[node.parentId];
+
+    if (parentNode) {
+      nextNodes[node.parentId] = {
+        ...parentNode,
+        childIds: parentNode.childIds.filter((childId) => childId !== nodeId),
+      };
+    }
+  }
+
+  if (node.childIds.length > 0) {
+    node.childIds.forEach((childId) => {
+      const childNode = graph.nodes[childId];
+
+      if (!childNode) {
+        return;
+      }
+
+      nextNodes[childId] = {
+        ...childNode,
+        parentId: null,
+      };
+    });
+  }
+
+  delete nextNodes[nodeId];
+
+  return {
+    ...graph,
+    nodes: nextNodes,
+  };
+}
+
+export function listUndefinedParentNodes(graph: FishboneGraph): FishboneNodeRecord[] {
+  return Object.values(graph.nodes).filter(
+    (node) => node.id !== graph.rootId && node.parentId === null,
+  );
 }

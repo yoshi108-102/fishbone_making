@@ -6,20 +6,29 @@ import type { KeyboardEvent } from "react";
 import type {
   FishboneEditableField,
   FishboneEditorState,
+  FishboneNodeRecord,
 } from "../lib/fishbone-types";
 
 type FishboneDrawerProps = {
   editor: FishboneEditorState;
+  undefinedParentNodes: FishboneNodeRecord[];
   onChange: (field: FishboneEditableField, value: string) => void;
+  onToggleAttachUndefinedNode: (nodeId: string) => void;
   onClose: () => void;
   onSave: () => void | Promise<void>;
+  onDelete: () => void | Promise<void>;
+  canDelete: boolean;
 };
 
 export default function FishboneDrawer({
   editor,
+  undefinedParentNodes,
   onChange,
+  onToggleAttachUndefinedNode,
   onClose,
   onSave,
+  onDelete,
+  canDelete,
 }: FishboneDrawerProps) {
   const compositionRef = useRef(false);
 
@@ -99,6 +108,45 @@ export default function FishboneDrawer({
             onKeyDown={handleKeyDown}
           />
 
+          {editor.mode === "create" ? (
+            <div className="drawer-attach-block">
+              <div className="drawer-attach-copy">
+                <span className="field-label">undefined ノードを接続</span>
+                <p>
+                  親が `undefined` になっているノードを、新しいカードの下にそのまま接続できます。
+                </p>
+              </div>
+
+              {undefinedParentNodes.length > 0 ? (
+                <div className="drawer-attach-list">
+                  {undefinedParentNodes.map((node) => {
+                    const isChecked = editor.attachedUndefinedNodeIds.includes(node.id);
+
+                    return (
+                      <label
+                        key={node.id}
+                        className={`drawer-attach-item ${isChecked ? "selected" : ""}`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => onToggleAttachUndefinedNode(node.id)}
+                        />
+                        <div className="drawer-attach-body">
+                          <strong>{node.title || "無題の要素"}</strong>
+                          <span>下位カード {node.childIds.length} 件</span>
+                          <p>{node.notes.trim() || "備考はまだありません。"}</p>
+                        </div>
+                      </label>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p className="drawer-hint">接続できる undefined ノードはありません。</p>
+              )}
+            </div>
+          ) : null}
+
           {editor.error ? (
             <p className="drawer-error">{editor.error}</p>
           ) : (
@@ -110,6 +158,11 @@ export default function FishboneDrawer({
         </div>
 
         <div className="drawer-footer">
+          {canDelete ? (
+            <button type="button" className="danger-button" onClick={() => void onDelete()}>
+              削除する
+            </button>
+          ) : null}
           <button type="button" className="ghost-button" onClick={onClose}>
             閉じる
           </button>

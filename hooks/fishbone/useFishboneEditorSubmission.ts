@@ -50,7 +50,7 @@ export function useFishboneEditorSubmission({
         notes: editor.notes.trim(),
         parentId: editor.targetNodeId,
         childIds: [],
-      });
+      }, editor.attachedUndefinedNodeIds);
     } else {
       nextGraph = updateNodeFields(graph, editor.targetNodeId, {
         title,

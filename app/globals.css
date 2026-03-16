@@ -164,7 +164,8 @@ textarea:focus-visible {
 
 .ghost-button,
 .solid-button,
-.text-button {
+.text-button,
+.danger-button {
   border-radius: 999px;
   transition:
     transform 140ms ease,
@@ -179,6 +180,12 @@ textarea:focus-visible {
   background: rgba(255, 255, 255, 0.76);
 }
 
+.danger-button {
+  border: 1px solid rgba(139, 56, 39, 0.22);
+  background: rgba(139, 56, 39, 0.1);
+  color: #7a3125;
+}
+
 .ghost-button:disabled {
   cursor: default;
   opacity: 0.45;
@@ -188,6 +195,7 @@ textarea:focus-visible {
 .ghost-button:hover,
 .text-button:hover,
 .solid-button:hover,
+.danger-button:hover,
 .floating-add:hover,
 .card-button:hover,
 .card-edit:hover,
@@ -196,7 +204,8 @@ textarea:focus-visible {
 }
 
 .ghost-button,
-.solid-button {
+.solid-button,
+.danger-button {
   padding: 10px 15px;
 }
 
@@ -211,6 +220,11 @@ textarea:focus-visible {
 .text-button:hover {
   border-color: rgba(31, 90, 81, 0.34);
   color: var(--accent-deep);
+}
+
+.danger-button:hover {
+  border-color: rgba(139, 56, 39, 0.36);
+  color: #7a3125;
 }
 
 .solid-button:hover {
@@ -474,6 +488,52 @@ textarea:focus-visible {
   line-height: 1.75;
 }
 
+.undefined-parent-panel {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.undefined-parent-panel h3 {
+  margin: 8px 0 0;
+  font-size: 22px;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+
+.undefined-parent-list {
+  display: grid;
+  gap: 12px;
+}
+
+.undefined-parent-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.undefined-parent-copy {
+  display: grid;
+  gap: 8px;
+}
+
+.undefined-parent-copy strong {
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.undefined-parent-copy p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .floating-add {
   position: fixed;
   right: 28px;
@@ -575,6 +635,61 @@ textarea:focus-visible {
   font-size: 14px;
 }
 
+.drawer-attach-block {
+  display: grid;
+  gap: 12px;
+}
+
+.drawer-attach-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.drawer-attach-list {
+  display: grid;
+  gap: 10px;
+  max-height: 220px;
+  overflow: auto;
+}
+
+.drawer-attach-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.drawer-attach-item.selected {
+  border-color: rgba(31, 90, 81, 0.28);
+  background: rgba(216, 235, 230, 0.42);
+}
+
+.drawer-attach-item input {
+  margin-top: 3px;
+}
+
+.drawer-attach-body {
+  display: grid;
+  gap: 4px;
+}
+
+.drawer-attach-body strong {
+  font-size: 16px;
+}
+
+.drawer-attach-body span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.drawer-attach-body p {
+  font-size: 13px;
+}
+
 .drawer-footer {
   display: flex;
   gap: 12px;
@@ -622,6 +737,10 @@ textarea:focus-visible {
 
   .drawer-panel {
     width: 100vw;
+  }
+
+  .undefined-parent-card {
+    flex-direction: column;
   }
 
   .floating-add {

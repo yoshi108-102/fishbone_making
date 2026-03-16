@@ -4,8 +4,8 @@
     {
       "id": "root",
       "parentId": null,
-      "title": "加工精度が悪い",
-      "notes": "丸棒がガタガタになっている。"
+      "title": "丸棒の加工精度が悪い",
+      "notes": "丸棒をプレスした時に、細かい曲がりがたくさん発生してしまう。"
     },
     {
       "id": "current-state",

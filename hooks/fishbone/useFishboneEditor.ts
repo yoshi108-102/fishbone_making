@@ -16,6 +16,7 @@ function createEmptyEditor(): FishboneEditorState {
     contextLine: "",
     title: "",
     notes: "",
+    attachedUndefinedNodeIds: [],
     error: "",
   };
 }
@@ -31,6 +32,7 @@ export function useFishboneEditor() {
       contextLine: `追加先: ${node.title || "最上位の課題"}`,
       title: "",
       notes: "",
+      attachedUndefinedNodeIds: [],
       error: "",
     });
   }
@@ -43,6 +45,7 @@ export function useFishboneEditor() {
       contextLine: `編集対象: ${node.title || "無題の要素"}`,
       title: node.title,
       notes: node.notes,
+      attachedUndefinedNodeIds: [],
       error: "",
     });
   }
@@ -66,6 +69,23 @@ export function useFishboneEditor() {
     }));
   }
 
+  function toggleAttachedUndefinedNode(nodeId: string): void {
+    setEditor((currentEditor) => {
+      if (currentEditor.mode !== "create") {
+        return currentEditor;
+      }
+
+      const isAttached = currentEditor.attachedUndefinedNodeIds.includes(nodeId);
+
+      return {
+        ...currentEditor,
+        attachedUndefinedNodeIds: isAttached
+          ? currentEditor.attachedUndefinedNodeIds.filter((currentId) => currentId !== nodeId)
+          : [...currentEditor.attachedUndefinedNodeIds, nodeId],
+      };
+    });
+  }
+
   return {
     editor,
     openCreateEditor,
@@ -73,5 +93,6 @@ export function useFishboneEditor() {
     closeEditor,
     updateEditorField,
     setEditorError,
+    toggleAttachedUndefinedNode,
   };
 }
