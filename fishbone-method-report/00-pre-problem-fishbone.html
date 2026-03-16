@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>00 前段の要素分析フィッシュボーン | フィッシュボーン分析 要素別レポート</title>
+    <link rel="stylesheet" href="./report.css" />
+    <style>
+      :root {
+        --accent: #1d5f57;
+        --accent-soft: #dceee8;
+        --accent-deep: #143e38;
+        --warm: #9a5123;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <nav class="topbar">
+        <a href="./index.html">目次へ戻る</a>
+        <span>00 / 06 前段の要素分析フィッシュボーン</span>
+        <a href="./01-problem-framing.html">次へ: 問題定義</a>
+      </nav>
+
+      <section class="hero">
+        <span class="eyebrow">Element 00</span>
+        <h1>前段の要素分析フィッシュボーン</h1>
+        <p class="lead">
+          ここで扱うフィッシュボーンは、いきなり根本原因を決めるための図ではありません。トヨタ式なぜなぜ分析に入る前に、
+          <strong>どこで何が標準から外れているのか</strong>、
+          <strong>どの条件差が問題と結びついていそうか</strong>、
+          <strong>どの枝から why を始めるべきか</strong>
+          を絞るための前段の要素分析です。
+        </p>
+        <p class="summary-line">
+          これは魚骨図の原典そのものというより、ASQ / IHI の fishbone の整理機能、Lean Enterprise Institute の「first why に入る前に current state と point of cause を絞る」考え方、Barbara Minto の MECE を組み合わせた実務的な使い方です。
+        </p>
+        <div class="meta">
+          <span>役割: なぜなぜ前の要素抽出</span>
+          <span>ゴール: 01 の問題定義アイテムを得る</span>
+          <span>止めどころ: why を始める枝が1本以上見えること</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>この前段が必要な理由</h2>
+        <div class="grid two">
+          <article class="callout primary">
+            <h3>5 Whys は問題定義が曖昧だと崩れる</h3>
+            <p>
+              Lean Enterprise Institute は、5 Whys の前提として
+              <strong>specific problem definition</strong>
+              と
+              <strong>current state の正確な理解</strong>
+              を挙げています。問題が広いまま why を始めると、どの現象を説明しているのかがぶれます。
+            </p>
+          </article>
+          <article class="callout warn">
+            <h3>魚骨図は wishbone にもなりやすい</h3>
+            <p>
+              Lean の解説では、fishbone は actual physical causes を洗うべきで、願望や好みを書き散らす wishbone にしないことが重要とされています。前段で観察可能な枝に限定することで、そこを防ぎます。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>この段階のアウトプット</h2>
+        <div class="grid three">
+          <article class="card">
+            <span class="label">1. 問題候補の絞り込み</span>
+            <p>
+              「何かおかしい」から一歩進めて、どの現象を正式な problem statement 候補にするかを見つけます。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">2. point of cause の候補</span>
+            <p>
+              どの工程、場面、条件でズレが発生していそうかを絞ります。これが why を始める入口になります。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">3. 01 の入力素材</span>
+            <p>
+              current state、standard / desired state、gap、scope、impact といった問題定義の材料を揃えます。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>効果的な進め方</h2>
+        <div class="workflow">
+          <article class="step">
+            <div class="step-no">STEP 0</div>
+            <div class="stack">
+              <h3>頭には「暫定テーマ」を置く</h3>
+              <p>
+                この段階では完成した problem statement を置きません。代わりに「月末申請で処理が崩れる」「検収後の手戻りが気になる」のような
+                <strong>暫定テーマ</strong>
+                を置き、何を要素分解するかだけを固定します。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 1</div>
+            <div class="stack">
+              <h3>大骨は “原因” ではなく “観察の棚” にする</h3>
+              <p>
+                ここでの大骨は、まだ根本原因の棚ではありません。`工程`、`条件差`、`情報`、`判断基準`、`ツール/表示`、`負荷・外部条件` のように、
+                <strong>今あるズレを観察しやすい棚</strong>
+                で切ります。MECE は完全網羅よりも、
+                <strong>同じ話を何度も書かない</strong>
+                ための原理として使います。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 2</div>
+            <div class="stack">
+              <h3>枝には “観察可能な差分” を書く</h3>
+              <p>
+                「教育不足」「意識が低い」のような解釈語はまだ早いです。まずは
+                <strong>起きるとき / 起きないときの差</strong>、
+                <strong>標準と現実の差</strong>、
+                <strong>工程ごとの差</strong>
+                を書きます。
+              </p>
+              <div class="callout good">
+                例: 「月末だけ承認前チェックが後工程へ回る」「必要条件が画面ではなく別資料にある」「熟練者は起きず新人で起きる」
+              </div>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 3</div>
+            <div class="stack">
+              <h3>小骨は “差分 → 直後の影響” までで止める</h3>
+              <p>
+                前段フィッシュボーンでも因果は必要です。ただし root cause まで飛びません。
+                <strong>観察された差分が、すぐ上の現象へどうつながるか</strong>
+                までを書き、そこから先は why 候補として残します。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 4</div>
+            <div class="stack">
+              <h3>point of cause を1つ以上選ぶ</h3>
+              <p>
+                Michael Ballé は「first why の前に factor を一つずつ確認し、どこで process が expected どおり動かないかを見る」と説明しています。枝を見て、
+                <strong>ここからなら why を始められる</strong>
+                という点を選びます。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 5</div>
+            <div class="stack">
+              <h3>01 の問題定義へ圧縮する</h3>
+              <p>
+                最後に、魚骨図から `現状`, `標準`, `ギャップ`, `発生場面`, `影響`, `分析対象外` を取り出して problem definition にします。
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>大骨の選び方</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>状況</th>
+                <th>おすすめの大骨</th>
+                <th>理由</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>どの工程で崩れるか分からない</td>
+                <td>工程型: 受付 / 判断 / 実行 / 引き継ぎ / 例外処理</td>
+                <td>IHI の process-type fishbone に近く、point of cause を見つけやすい</td>
+              </tr>
+              <tr>
+                <td>工程は分かるが条件差が不明</td>
+                <td>条件型: 情報 / 判断基準 / ツール / 負荷 / 外部条件 / 人の熟練差</td>
+                <td>起きる/起きないの差分を拾いやすい</td>
+              </tr>
+              <tr>
+                <td>サービスや知識労働で 6M が硬すぎる</td>
+                <td>混合型: 工程 + 情報 + 判断基準 + 可視化 + 依存先</td>
+                <td>6M の機械的適用を避け、実態に合う棚にできる</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>因果関係を保つ書き方</h2>
+        <div class="grid two">
+          <article class="callout good">
+            <h3>良い枝</h3>
+            <p>
+              `月末だけ例外案件が集中する`
+              →
+              `初回確認を短縮する`
+              →
+              `必須項目不足が承認後に見つかる`
+            </p>
+            <p class="note">
+              観察された条件差から、直後の影響を一段ずつ書いています。
+            </p>
+          </article>
+          <article class="callout bad">
+            <h3>悪い枝</h3>
+            <p>
+              `月末に差し戻しが多い`
+              →
+              `教育不足`
+              →
+              `意識が低い`
+            </p>
+            <p class="note">
+              中間事象がなく、解釈と責任追及へ飛んでいます。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>MECEを崩さないための実務ルール</h2>
+        <div class="grid three">
+          <article class="card">
+            <span class="label">ルール 1</span>
+            <p>大骨名は「棚」にする。原因語を大骨へ置かない。</p>
+          </article>
+          <article class="card">
+            <span class="label">ルール 2</span>
+            <p>同じ差分が二つの大骨へ入りそうなら、切り口を調整する。</p>
+          </article>
+          <article class="card">
+            <span class="label">ルール 3</span>
+            <p>一つの枝に複数の差分や複数の原因を詰め込まない。</p>
+          </article>
+          <article class="card">
+            <span class="label">ルール 4</span>
+            <p>起きるケースと起きないケースの両方を書く。差分が見えない枝は弱い。</p>
+          </article>
+          <article class="card">
+            <span class="label">ルール 5</span>
+            <p>事実と解釈を分ける。未確認なら仮説ラベルを付ける。</p>
+          </article>
+          <article class="card">
+            <span class="label">ルール 6</span>
+            <p>why を始めたくなっても、01 の問題定義アイテムがそろうまでは止める。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>このフィッシュボーンから 01 へ渡す項目</h2>
+        <div class="mini-list">
+          <div>何が起きているか: 観察できる現象</div>
+          <div>どこで / いつ起きるか: 発生工程と発生条件</div>
+          <div>標準ではどうあるべきか: expected state</div>
+          <div>実際はどうか: current state</div>
+          <div>差分は何か: gap</div>
+          <div>何が困るか: need / impact</div>
+          <div>why を始めるべき枝はどこか: point of cause の候補</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>書き込みテンプレート</h2>
+        <article class="template">
+          <pre>暫定テーマ:
+大骨の切り方:
+大骨A:
+  起きるときの差分:
+  起きないときの差分:
+  標準との差:
+  直後に起きる影響:
+大骨B:
+  起きるときの差分:
+  起きないときの差分:
+  標準との差:
+  直後に起きる影響:
+point of cause 候補:
+01へ渡す current state:
+01へ渡す desired state:
+01へ渡す gap:</pre>
+        </article>
+      </section>
+
+      <section class="section">
+        <h2>参照ソース</h2>
+        <ul class="refs">
+          <li><a href="https://www.lean.org/the-lean-post/articles/five-whys/">Lean Enterprise Institute: The Five Whys</a></li>
+          <li><a href="https://www.lean.org/the-lean-post/articles/five-whys-animation/">Lean Enterprise Institute: Clarifying the ‘5 Whys’ Problem-Solving Method</a></li>
+          <li><a href="https://asq.org/quality-resources/fishbone">ASQ: What is a Fishbone Diagram? Ishikawa Cause &amp; Effect Diagram</a></li>
+          <li><a href="https://www.ihi.org/library/tools/cause-and-effect-diagram">Institute for Healthcare Improvement: Cause and Effect Diagram</a></li>
+          <li><a href="https://www.mckinsey.com/alumni/news-and-events/global-news/alumni-news/barbara-minto-mece-i-invented-it-so-i-get-to-say-how-to-pronounce-it">McKinsey: Barbara Minto and MECE</a></li>
+        </ul>
+        <p class="note">
+          `前段の要素分析フィッシュボーン` という位置づけ自体は、Lean の problem definition / point of cause の考え方と、fishbone の整理機能を組み合わせた推論です。原典の fishbone がこの名称を採っているわけではありません。
+        </p>
+        <div class="footer-nav">
+          <a href="./index.html">目次へ戻る</a>
+          <a href="./01-problem-framing.html">次の要素へ</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

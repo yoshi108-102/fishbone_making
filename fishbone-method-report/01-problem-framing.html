@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01 問題定義 | フィッシュボーン分析 要素別レポート</title>
+    <link rel="stylesheet" href="./report.css" />
+    <style>
+      :root {
+        --accent: #245a73;
+        --accent-soft: #dcecf4;
+        --accent-deep: #173b4b;
+        --warm: #a05a22;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <nav class="topbar">
+        <a href="./index.html">目次へ戻る</a>
+        <a href="./00-pre-problem-fishbone.html">前へ: 前段の要素分析フィッシュボーン</a>
+        <span>01 / 06 問題定義</span>
+        <a href="./02-category-design.html">次へ: 大骨設計</a>
+      </nav>
+
+      <section class="hero">
+        <span class="eyebrow">Element 01</span>
+        <h1>問題定義</h1>
+        <p class="lead">
+          このページは、`00. 前段の要素分析フィッシュボーン` の出力を、
+          <strong>トヨタ式なぜなぜ分析に入れる problem definition</strong>
+          へ整形するためのページです。Lean Enterprise Institute は、5 Whys を適切に回す前提として
+          <strong>specific problem definition</strong> と
+          <strong>current state の正確な把握</strong>
+          を挙げています。つまり、ここではじめて「何を why するのか」を固定します。
+        </p>
+        <p class="summary-line">
+          コツは、00 で集めた枝をそのまま並べるのではなく、`current state`、`desired state / standard`、`gap`、`point of cause`、`impact` に圧縮することです。
+        </p>
+        <div class="meta">
+          <span>役割: why の対象を固定する</span>
+          <span>入力元: 00 の要素分析フィッシュボーン</span>
+          <span>失敗しやすい点: 原因・対策の混入</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>問題定義で決めるべき6項目</h2>
+        <div class="grid two">
+          <article class="card">
+            <span class="label">1. Need / Priority</span>
+            <p>
+              なぜこの問題を解く必要があるのかです。品質、納期、安全、顧客影響、手戻りなど、優先順位の理由を一行で置きます。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">2. Current State</span>
+            <p>
+              いま実際に何が起きているかを観察可能に書きます。数字、頻度、工程、場面を含めると安定します。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">3. Desired State / Standard</span>
+            <p>
+              本来どうあるべきかです。標準、通常状態、期待値、目標のどれを基準にするかを決めます。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">4. Gap</span>
+            <p>
+              current state と desired state の差です。差の大きさと、どの条件で差が開くかを書きます。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">5. Point of Cause</span>
+            <p>
+              どの工程・場面・条件から why を始めるかです。00 のフィッシュボーンで最も強い枝をここへ渡します。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">6. Scope / Impact</span>
+            <p>
+              どこまでを分析対象とし、何が困るのかです。対象外も書いておくと why が広がりすぎません。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>00 から 01 へ圧縮する考え方</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>00 の枝で拾うもの</th>
+                <th>01 での書き換え先</th>
+                <th>例</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>起きる場面 / 起きない場面</td>
+                <td>発生条件、scope</td>
+                <td>月末3営業日、オンライン申請のみ</td>
+              </tr>
+              <tr>
+                <td>観察できる現象</td>
+                <td>current state</td>
+                <td>初回承認後の差し戻し率が18%</td>
+              </tr>
+              <tr>
+                <td>標準との差</td>
+                <td>desired state, gap</td>
+                <td>通常週は6%、月末は18%</td>
+              </tr>
+              <tr>
+                <td>もっとも強い枝</td>
+                <td>point of cause</td>
+                <td>承認前チェックが月末のみ後工程へ回る</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>実務で効くコツ</h2>
+        <div class="step-list">
+          <article class="step">
+            <div class="step-no">TIP 1</div>
+            <div class="stack">
+              <h3>01 では「一文一問題」に圧縮する</h3>
+              <p>
+                00 で枝は複数あってよいですが、01 の problem statement はひとつの現象に絞ります。遅延とミスが同時にあるなら別 statement に分けたほうがよいです。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">TIP 2</div>
+            <div class="stack">
+              <h3>原因を problem statement に混ぜない</h3>
+              <p>
+                00 の枝で見えた strong hypothesis があっても、01 ではまだ正式な原因にしません。why を始めるための入口として point of cause に置くにとどめます。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">TIP 3</div>
+            <div class="stack">
+              <h3>標準を書かないと gap は書けない</h3>
+              <p>
+                current state だけでは why が拡散します。通常状態、標準手順、目標値など、何と比べてズレているのかを必ず添えます。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">TIP 4</div>
+            <div class="stack">
+              <h3>分析対象外も一緒に書く</h3>
+              <p>
+                「今回はオンライン申請だけ」「今回は月末3営業日だけ」のように対象外を決めると、why が全社論へ広がりにくくなります。
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>ありがちな失敗</h2>
+        <div class="grid three">
+          <article class="callout bad">
+            <h3>枝の列挙をそのまま貼る</h3>
+            <p>00 の魚骨図の枝を problem statement として並べてしまう。</p>
+          </article>
+          <article class="callout bad">
+            <h3>標準不在</h3>
+            <p>current state だけがあり、何との差かが書かれていない。</p>
+          </article>
+          <article class="callout bad">
+            <h3>point of cause 不在</h3>
+            <p>どの枝から why を始めるかが決まらず、分析が再び広がってしまう。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>書き込みテンプレート</h2>
+        <article class="template">
+          <pre>Need / Priority:
+Current State:
+Desired State / Standard:
+Gap:
+Point of Cause:
+Scope:
+Impact:
+対象外にする範囲:</pre>
+        </article>
+      </section>
+
+      <section class="section">
+        <h2>参照ソース</h2>
+        <ul class="refs">
+          <li><a href="https://www.lean.org/lexicon-terms/5-whys/">Lean Enterprise Institute: 5 Whys</a></li>
+          <li><a href="https://www.lean.org/the-lean-post/articles/five-whys/">Lean Enterprise Institute: The Five Whys</a></li>
+          <li><a href="https://www.ihi.org/library/tools/5-whys-finding-root-cause">Institute for Healthcare Improvement: 5 Whys: Finding the Root Cause</a></li>
+          <li><a href="https://asq.org/quality-resources/fishbone">ASQ: What is a Fishbone Diagram? Ishikawa Cause &amp; Effect Diagram</a></li>
+        </ul>
+        <p class="note">
+          本ページの整理は、LEI の `specific problem definition` と `current state` 重視を土台にしつつ、00 の要素分析フィッシュボーンから正式な problem statement へ圧縮する手順として再構成しています。
+        </p>
+        <div class="footer-nav">
+          <a href="./00-pre-problem-fishbone.html">前の要素へ</a>
+          <a href="./index.html">目次へ戻る</a>
+          <a href="./02-category-design.html">次の要素へ</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>06 対策化とフォローアップ | フィッシュボーン分析 要素別レポート</title>
+    <link rel="stylesheet" href="./report.css" />
+    <style>
+      :root {
+        --accent: #26584a;
+        --accent-soft: #dceee8;
+        --accent-deep: #193a32;
+        --warm: #8b531f;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <nav class="topbar">
+        <a href="./index.html">目次へ戻る</a>
+        <a href="./05-evidence-validation.html">前へ: 事実確認と検証</a>
+        <span>06 / 06 対策化とフォローアップ</span>
+      </nav>
+
+      <section class="hero">
+        <span class="eyebrow">Element 06</span>
+        <h1>対策化とフォローアップ</h1>
+        <p class="lead">
+          分析の最後は、原因に対して
+          <strong>どの条件を変えるか</strong>
+          を決める工程です。IHI の RCA2 は、持続する改善と harm prevention を重視し、個人への注意喚起より
+          <strong>システム改善</strong>
+          を重く見ています。ASQ は five hows を使うことで、解決策をより具体化できるとしています。
+        </p>
+        <p class="summary-line">
+          コツは、問題に直接対策を当てるのではなく、確認できた末端原因の真下へ対策を置くことです。原因と対策がずれると、実行しても効いたか分かりません。
+        </p>
+        <div class="meta">
+          <span>役割: 再発防止へ落とし込む</span>
+          <span>重視点: system change / standardization</span>
+          <span>補助手法: Five Hows</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>対策化の基本構造</h2>
+        <div class="grid two">
+          <article class="card">
+            <span class="label">原因</span>
+            <p>
+              例外条件が複数資料に分散し、入力時に必要項目を判断しにくい。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">対策</span>
+            <p>
+              入力画面に条件連動の必須表示を実装し、手順書側は例外条件一覧へのリンクに一本化する。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">効果確認</span>
+            <p>
+              月末3営業日の必須項目欠落率、差し戻し率、入力完了時間を継続測定する。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">標準化</span>
+            <p>
+              新手順を標準業務として文書化し、例外条件追加時の更新責任を定義する。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>対策を作るときのコツ</h2>
+        <div class="step-list">
+          <article class="step">
+            <div class="step-no">TIP 1</div>
+            <div class="stack">
+              <h3>強い対策を優先する</h3>
+              <p>
+                注意喚起、再教育、声かけだけでは再発しやすいです。表示、手順、入力制御、責任分担、監視など、条件そのものを変える対策を先に考えます。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">TIP 2</div>
+            <div class="stack">
+              <h3>Five Hows で実装粒度まで落とす</h3>
+              <p>
+                ASQ が紹介する five hows を使うと、「どうやって実装するか」をさらに分解できます。対策名だけで終わらず、誰が何をいつ変えるかまで書きます。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">TIP 3</div>
+            <div class="stack">
+              <h3>効果指標と運用指標を分ける</h3>
+              <p>
+                差し戻し率のような結果指標だけでなく、必須表示利用率、手順更新遅延件数のような先行指標も置くと追いやすくなります。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">TIP 4</div>
+            <div class="stack">
+              <h3>標準化まで含める</h3>
+              <p>
+                一度直っても、標準、責任、更新ルールがなければ戻ります。再発防止は implementation ではなく sustain まで含みます。
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>弱い対策になりやすい例</h2>
+        <div class="grid three">
+          <article class="callout bad">
+            <h3>周知のみ</h3>
+            <p>「気をつける」「共有する」だけで条件が変わらない。</p>
+          </article>
+          <article class="callout bad">
+            <h3>教育のみ</h3>
+            <p>手順やUIが悪いまま教育だけ追加し、負担を個人に返してしまう。</p>
+          </article>
+          <article class="callout bad">
+            <h3>責任者不在</h3>
+            <p>よい対策でも、誰が保守し続けるかが決まっていないと定着しない。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>対策シート テンプレート</h2>
+        <article class="template">
+          <pre>末端原因:
+対策:
+なぜこの対策で効くか:
+実施主体:
+実施期限:
+必要な変更点:
+効果指標:
+運用指標:
+標準化の方法:
+見直しタイミング:</pre>
+        </article>
+      </section>
+
+      <section class="section">
+        <h2>参照ソース</h2>
+        <ul class="refs">
+          <li><a href="https://asq.org/quality-resources/five-whys">ASQ: Five Whys and Five Hows</a></li>
+          <li><a href="https://www.ihi.org/library/tools/rca2-improving-root-cause-analyses-and-actions-prevent-harm">Institute for Healthcare Improvement: RCA2</a></li>
+          <li><a href="https://www.lean.org/lexicon-terms/5-whys/">Lean Enterprise Institute: 5 Whys</a></li>
+          <li><a href="https://www.ihi.org/library/tools/cause-and-effect-diagram">Institute for Healthcare Improvement: Cause and Effect Diagram</a></li>
+        </ul>
+        <div class="footer-nav">
+          <a href="./05-evidence-validation.html">前の要素へ</a>
+          <a href="./index.html">目次へ戻る</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

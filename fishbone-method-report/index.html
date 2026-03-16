@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>前段の要素分析から始めるフィッシュボーン分析レポート</title>
+    <link rel="stylesheet" href="./report.css" />
+    <style>
+      :root {
+        --accent: #1c5e57;
+        --accent-soft: #dbeee9;
+        --accent-deep: #143d37;
+        --warm: #a04e22;
+        --bg: #f1ece2;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <nav class="topbar">
+        <span>Docs / Fishbone Method Report</span>
+        <a href="../fishbone-toyota-whywhy-guide.html">簡易ガイドへ</a>
+      </nav>
+
+      <section class="hero">
+        <span class="eyebrow">Research Report</span>
+        <h1>前段の要素分析から始めるフィッシュボーン分析レポート</h1>
+        <p class="lead">
+          今回の整理では、フィッシュボーン分析を
+          <strong>いきなり根本原因を出すための図</strong>
+          としてではなく、
+          <strong>トヨタ式なぜなぜ分析に入る前に、問題定義に必要な要素を分解する前段の器</strong>
+          として位置づけます。公開資料を突き合わせると、実務ではまず
+          <strong>前段の要素分析フィッシュボーン</strong>
+          で point of cause と gap を絞り、その後に
+          <strong>問題定義</strong>、
+          <strong>大骨設計</strong>、
+          <strong>因果の枝づくり</strong>、
+          <strong>なぜなぜ</strong>、
+          <strong>事実確認</strong>、
+          <strong>対策化</strong>
+          へ進む構図が安定します。
+        </p>
+        <p class="summary-line">
+          調査からの要点は、Toyota 系の why に入る前に、`current state`, `desired state`, `gap`, `point of cause` を見失わないことです。魚骨図はその要素を漏れにくく集める器として使うほうが強い、というのが今回の結論です。
+        </p>
+        <div class="meta">
+          <span>対象手法: Fishbone / Ishikawa Diagram</span>
+          <span>主目的: Why 前の要素抽出</span>
+          <span>補助原理: MECE / Current State / Point of Cause</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>目次</h2>
+        <div class="toc-grid">
+          <a class="toc-card" href="./00-pre-problem-fishbone.html">
+            <strong>00. 前段の要素分析フィッシュボーン</strong>
+            <p>トヨタ式なぜなぜの前に、問題定義に必要な要素を集めるための使い方。</p>
+          </a>
+          <a class="toc-card" href="./01-problem-framing.html">
+            <strong>01. 問題定義</strong>
+            <p>00 の出力を、current state / desired state / gap を備えた問題文へ圧縮する。</p>
+          </a>
+          <a class="toc-card" href="./02-category-design.html">
+            <strong>02. 大骨設計</strong>
+            <p>6Mやプロセス軸を使いながら、重複を減らす分類をつくる。</p>
+          </a>
+          <a class="toc-card" href="./03-causal-branching.html">
+            <strong>03. 因果の枝づくり</strong>
+            <p>小骨を「原因候補の列挙」ではなく「因果の連鎖」として書く。</p>
+          </a>
+          <a class="toc-card" href="./04-five-whys.html">
+            <strong>04. トヨタ式なぜなぜ</strong>
+            <p>5回に縛られず、直前事象を説明する問いを積み上げる。</p>
+          </a>
+          <a class="toc-card" href="./05-evidence-validation.html">
+            <strong>05. 事実確認と検証</strong>
+            <p>現場観察、データ、比較で、仮説と根拠を切り分ける。</p>
+          </a>
+          <a class="toc-card" href="./06-countermeasures.html">
+            <strong>06. 対策化とフォローアップ</strong>
+            <p>末端原因に対策をひもづけ、再発防止まで標準化する。</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>全体像</h2>
+        <div class="workflow">
+          <article class="step">
+            <div class="step-no">STEP 1</div>
+            <div class="stack">
+              <h3>暫定テーマを要素分解して point of cause を探す</h3>
+              <p>
+                Lean Enterprise Institute の公開資料では、5 Whys の前に specific problem definition と current state の理解が必要とされています。そこで最初に fishbone を使い、工程差、条件差、標準との差、発生点を分解して、どの枝から why を始めるべきかを絞ります。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 2</div>
+            <div class="stack">
+              <h3>01 の問題定義へ圧縮する</h3>
+              <p>
+                00 で拾った要素から、current state、desired state、gap、scope、impact を取り出して formal な problem statement にします。ここまでで初めて「何を why するか」が固定されます。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 3</div>
+            <div class="stack">
+              <h3>大骨で論点の棚を作る</h3>
+              <p>
+                ASQ と IHI は fishbone をカテゴリ別整理の道具として説明しています。MECE は正式規格ではありませんが、Barbara Minto の整理原則を大骨設計に応用すると、重複と漏れを減らしやすくなります。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 4</div>
+            <div class="stack">
+              <h3>枝を因果チェーンで深くする</h3>
+              <p>
+                ASQ は「枝の層が因果関係を示す」としています。ひとつ上の事象を説明する下位事象として書ける枝だけを why の候補にします。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 5</div>
+            <div class="stack">
+              <h3>5 Whys で直前の因果を追う</h3>
+              <p>
+                LEI と ASQ はともに、5回は固定回数ではなく目安だとしています。John Shook の説明では、reverse direction の therefore chain で戻れるかが因果確認に有効です。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 6</div>
+            <div class="stack">
+              <h3>仮説を現場事実で絞る</h3>
+              <p>
+                IHI は複数の根本原因がありうることを明記し、RCA2 は個人責任よりシステム脆弱性を見るべきだと述べています。PSNet は、複雑系で 5 Whys を単独使用すると単純化しすぎると警告しています。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 7</div>
+            <div class="stack">
+              <h3>対策を末端原因の真下に置く</h3>
+              <p>
+                RCA2 は、持続するシステム改善へつながる行動を重視します。対策は「気をつける」より、作業条件、検知方法、標準、責任を変えるほうが再発防止になりやすいです。
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>要素の対応表</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>要素</th>
+                <th>主な問い</th>
+                <th>アウトプット</th>
+                <th>崩れやすい点</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>前段の要素分析フィッシュボーン</td>
+                <td>何がずれ、どこで起き、どの枝から why を始めるべきか</td>
+                <td>暫定テーマ、差分の棚、point of cause 候補、01 の素材</td>
+                <td>いきなり根本原因を書く、問題定義前に why へ入る</td>
+              </tr>
+              <tr>
+                <td>問題定義</td>
+                <td>current state, desired state, gap, impact は何か</td>
+                <td>具体的な問題文、対象範囲、比較基準、影響</td>
+                <td>評価語だけで書く、原因や対策を混ぜる、発生点が曖昧</td>
+              </tr>
+              <tr>
+                <td>大骨設計</td>
+                <td>どの切り口なら重複を減らせるか</td>
+                <td>大骨カテゴリ、分析の棚</td>
+                <td>分類軸と原因語の混在、6Mの機械的適用</td>
+              </tr>
+              <tr>
+                <td>因果の枝づくり</td>
+                <td>この一段上の事象はなぜ起きるか</td>
+                <td>小骨の因果チェーン</td>
+                <td>列挙止まり、飛躍、抽象語の多用</td>
+              </tr>
+              <tr>
+                <td>トヨタ式なぜなぜ</td>
+                <td>直前の原因は何か、逆向きにも戻れるか</td>
+                <td>検証可能な why 連鎖</td>
+                <td>5回に固執、単一路線化、責任追及</td>
+              </tr>
+              <tr>
+                <td>事実確認</td>
+                <td>その原因を何で確かめるか</td>
+                <td>確認済み原因、未確認仮説、証拠</td>
+                <td>思い込み固定、データ不在、犯人探し</td>
+              </tr>
+              <tr>
+                <td>対策化</td>
+                <td>どの条件を変えれば再発しにくくなるか</td>
+                <td>対策、責任、確認指標、標準化計画</td>
+                <td>注意喚起だけ、原因と対策の不一致</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>調査上の補足</h2>
+        <div class="grid two">
+          <article class="callout primary">
+            <h3>このレポートの立場</h3>
+            <p>
+              ここでの「前段の要素分析フィッシュボーン」は、fishbone の原典用法をそのまま言い換えたものではありません。Lean の `problem definition` と `point of cause` の重視、ASQ / IHI の fishbone の整理機能、Minto の MECE を組み合わせた実務的な読み替えです。
+            </p>
+          </article>
+          <article class="callout warn">
+            <h3>単独使用の限界</h3>
+            <p>
+              5 Whys は教育用・対話用として強力ですが、複雑な問題で単独使用すると原因を一本化しすぎる危険があります。だからこそこのレポートでは、why の前に魚骨図で breadth を取り、problem statement を絞ってから deep dive する構成にしています。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>主な参照ソース</h2>
+        <ul class="refs">
+          <li><a href="https://www.lean.org/the-lean-post/articles/five-whys/">Lean Enterprise Institute: The Five Whys</a></li>
+          <li><a href="https://www.lean.org/the-lean-post/articles/five-whys-animation/">Lean Enterprise Institute: Clarifying the ‘5 Whys’ Problem-Solving Method</a></li>
+          <li><a href="https://asq.org/quality-resources/fishbone">ASQ: What is a Fishbone Diagram? Ishikawa Cause &amp; Effect Diagram</a></li>
+          <li><a href="https://www.ihi.org/library/tools/cause-and-effect-diagram">Institute for Healthcare Improvement: Cause and Effect Diagram</a></li>
+          <li><a href="https://asq.org/quality-resources/five-whys">ASQ: Five Whys and Five Hows</a></li>
+          <li><a href="https://www.lean.org/lexicon-terms/5-whys/">Lean Enterprise Institute: 5 Whys</a></li>
+          <li><a href="https://www.ihi.org/library/tools/5-whys-finding-root-cause">Institute for Healthcare Improvement: 5 Whys: Finding the Root Cause</a></li>
+          <li><a href="https://www.ihi.org/library/tools/rca2-improving-root-cause-analyses-and-actions-prevent-harm">Institute for Healthcare Improvement: RCA2</a></li>
+          <li><a href="https://psnet.ahrq.gov/issue/problem-5-whys">PSNet: The problem with the '5 whys.'</a></li>
+          <li><a href="https://www.mckinsey.com/alumni/news-and-events/global-news/alumni-news/barbara-minto-mece-i-invented-it-so-i-get-to-say-how-to-pronounce-it">McKinsey: Barbara Minto and MECE</a></li>
+        </ul>
+        <p class="note">
+          各要素ページでは、上記ソースのうち関連の深いものを再掲しています。前段フィッシュボーンという位置づけは、公開情報を突き合わせたうえでの推論であり、その点はページ内で明示しています。
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

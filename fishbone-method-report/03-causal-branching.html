@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03 因果の枝づくり | フィッシュボーン分析 要素別レポート</title>
+    <link rel="stylesheet" href="./report.css" />
+    <style>
+      :root {
+        --accent: #7a4d19;
+        --accent-soft: #f4e4d2;
+        --accent-deep: #553511;
+        --warm: #7b5a1a;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <nav class="topbar">
+        <a href="./index.html">目次へ戻る</a>
+        <a href="./02-category-design.html">前へ: 大骨設計</a>
+        <span>03 / 06 因果の枝づくり</span>
+        <a href="./04-five-whys.html">次へ: トヨタ式なぜなぜ</a>
+      </nav>
+
+      <section class="hero">
+        <span class="eyebrow">Element 03</span>
+        <h1>因果の枝づくり</h1>
+        <p class="lead">
+          魚骨図で最も起きやすい崩れは、枝が
+          <strong>因果チェーンではなく、思いつきの箇条書き</strong>
+          になることです。ASQ は fishbone の枝が layered branches として
+          <strong>causal relationships</strong>
+          を表すと説明しています。つまり、下位の枝はひとつ上の枝を説明していなければなりません。
+        </p>
+        <p class="summary-line">
+          コツは、一枝ごとに「この一段上の事象はなぜ起きるか」だけを問うことです。複数の話を一枝に詰め込まないほうが強い図になります。
+        </p>
+        <div class="meta">
+          <span>役割: 列挙を因果へ変える</span>
+          <span>確認法: therefore chain</span>
+          <span>単位: 一枝一現象</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>枝は「リスト」ではなく「連鎖」</h2>
+        <div class="grid two">
+          <article class="callout primary">
+            <h3>悪い枝</h3>
+            <p>
+              「忙しい」「確認不足」「教育不足」「属人化」のように原因候補を並べるだけでは、どれがどれを生むのか分かりません。これでは対策の当て先も曖昧です。
+            </p>
+          </article>
+          <article class="callout good">
+            <h3>良い枝</h3>
+            <p>
+              「差し戻しが多い → 必須項目欠落が多い → 入力時に不足を検知できない → 必須条件が画面と手順書に分散している」のように、直前の事象を説明する形にします。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>枝の作り方</h2>
+        <div class="workflow">
+          <article class="step">
+            <div class="step-no">STEP 1</div>
+            <div class="stack">
+              <h3>大骨の中で最上位の現象を置く</h3>
+              <p>
+                まずはそのカテゴリに属する「問題寄りの現象」を置きます。たとえば情報カテゴリなら「必要情報の更新が遅れる」などです。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 2</div>
+            <div class="stack">
+              <h3>その一段前の条件を書く</h3>
+              <p>
+                「なぜその現象が起きるか」を問って、直前条件を書きます。ここでは結論へ飛ばさず、観察できる工程・判断・状態にとどめます。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 3</div>
+            <div class="stack">
+              <h3>逆向きに therefore で読めるか確かめる</h3>
+              <p>
+                John Shook が勧めるように、末端から上へ therefore で戻してみます。戻れないなら、途中の枝に飛躍か表現の粗さがあります。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 4</div>
+            <div class="stack">
+              <h3>複数因果は枝分かれさせる</h3>
+              <p>
+                一つの現象に複数原因があるなら、ひとつの文に詰め込まず別枝に分けます。IHI も root cause が複数ありうるとしています。
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>細かいコツ</h2>
+        <div class="grid three">
+          <article class="card">
+            <span class="label">粒度</span>
+            <p>
+              枝の一段は、一回の why で説明できる粒度に保ちます。広すぎる語は、中間事象を挟んで分解します。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">表現</span>
+            <p>
+              「意識が低い」より「例外条件の確認が作業者ごとに違う」のように、状態か行動で書くと検証しやすくなります。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">重複</span>
+            <p>
+              同じ要因が別枝にも出る場合はありえますが、その場合はどのカテゴリの主因として扱うかを決め、二重計上を避けます。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>よくある崩れ方</h2>
+        <div class="grid two">
+          <article class="callout bad">
+            <h3>抽象語のまま止まる</h3>
+            <p>
+              「連携不足」「確認不足」だけでは、何が不足しているのか分かりません。情報、タイミング、責任、判断基準まで具体化が必要です。
+            </p>
+          </article>
+          <article class="callout bad">
+            <h3>一段で飛びすぎる</h3>
+            <p>
+              「差し戻しが多い → 教育不足」のように中間事象を飛ばすと、対策が訓練一択になります。工程上の何が起きていたかを挟みます。
+            </p>
+          </article>
+          <article class="callout bad">
+            <h3>枝に複数原因を詰める</h3>
+            <p>
+              「繁忙で教育も不足して確認も甘い」は三本に分けるべきです。一本にすると検証不能になります。
+            </p>
+          </article>
+          <article class="callout bad">
+            <h3>枝の深さがそろわない</h3>
+            <p>
+              ある枝は1段で止まり、別枝は5段まで掘ると比較が難しくなります。疑わしい枝は同程度まで掘ってから重要度を見ます。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>書き込みテンプレート</h2>
+        <article class="template">
+          <pre>大骨:
+最上位の現象:
+なぜ1:
+なぜ2:
+なぜ3:
+逆向き therefore で読めるか:
+別枝に分けるべき要因:
+仮説か / 確認済みか:</pre>
+        </article>
+      </section>
+
+      <section class="section">
+        <h2>参照ソース</h2>
+        <ul class="refs">
+          <li><a href="https://asq.org/quality-resources/fishbone">ASQ: What is a Fishbone Diagram? Ishikawa Cause &amp; Effect Diagram</a></li>
+          <li><a href="https://www.lean.org/the-lean-post/articles/five-whys-animation/">Lean Enterprise Institute: Clarifying the ‘5 Whys’ Problem-Solving Method</a></li>
+          <li><a href="https://www.ihi.org/library/tools/5-whys-finding-root-cause">Institute for Healthcare Improvement: 5 Whys: Finding the Root Cause</a></li>
+        </ul>
+        <div class="footer-nav">
+          <a href="./02-category-design.html">前の要素へ</a>
+          <a href="./index.html">目次へ戻る</a>
+          <a href="./04-five-whys.html">次の要素へ</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

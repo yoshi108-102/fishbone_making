@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>05 事実確認と検証 | フィッシュボーン分析 要素別レポート</title>
+    <link rel="stylesheet" href="./report.css" />
+    <style>
+      :root {
+        --accent: #8a3a1d;
+        --accent-soft: #f6e2d8;
+        --accent-deep: #5d2814;
+        --warm: #5a6230;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <nav class="topbar">
+        <a href="./index.html">目次へ戻る</a>
+        <a href="./04-five-whys.html">前へ: トヨタ式なぜなぜ</a>
+        <span>05 / 06 事実確認と検証</span>
+        <a href="./06-countermeasures.html">次へ: 対策化とフォローアップ</a>
+      </nav>
+
+      <section class="hero">
+        <span class="eyebrow">Element 05</span>
+        <h1>事実確認と検証</h1>
+        <p class="lead">
+          ここでの目的は、もっともらしい物語を
+          <strong>検証済みの原因</strong>
+          に絞ることです。Lean の解説では、current state を正しく理解し、問題が起きる場所をよく観察することが前提だとされています。IHI は root cause が複数ありうるとし、RCA2 は個人の失敗より
+          <strong>システムの脆弱性</strong>
+          を見るべきだと強調しています。
+        </p>
+        <p class="summary-line">
+          コツは、枝の末端を「確定原因」と決める前に、観察、ログ、比較、再現、ヒアリングで確かめることです。確認できないものは仮説として扱います。
+        </p>
+        <div class="meta">
+          <span>役割: 思い込みを削る</span>
+          <span>基本姿勢: blame ではなく system</span>
+          <span>成果物: 確認済み原因 / 未確認仮説</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>検証で見る4種類の材料</h2>
+        <div class="grid two">
+          <article class="card">
+            <span class="label">観察</span>
+            <p>
+              問題が起きる現場、画面、手順、実物を見る。会議室の推論だけで閉じない。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">データ</span>
+            <p>
+              件数、率、時間、ログ、履歴で傾向を確認する。主観だけで枝を固定しない。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">比較</span>
+            <p>
+              起きるケースと起きないケース、月末と通常週、熟練者と非熟練者などを比べる。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">再現</span>
+            <p>
+              条件をそろえて再度起きるかを見る。消えるなら条件の切り分けができます。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>検証の進め方</h2>
+        <div class="workflow">
+          <article class="step">
+            <div class="step-no">STEP 1</div>
+            <div class="stack">
+              <h3>枝を仮説ラベル付きで並べる</h3>
+              <p>
+                まず「確認済み」「未確認」「反証あり」を分けます。ここを曖昧にすると、後で議論が混ざります。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 2</div>
+            <div class="stack">
+              <h3>問題が起きる場面へ戻る</h3>
+              <p>
+                LEI の説明どおり、current state と point of cause を見に行きます。実際の画面、手順、やりとりを見ると、中間事象が見つかることがあります。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 3</div>
+            <div class="stack">
+              <h3>差分で仮説を絞る</h3>
+              <p>
+                起きるケースと起きないケースを比べ、差がある条件だけを残します。複数 root cause の可能性を前提に、枝ごとに証拠の強さを見ます。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 4</div>
+            <div class="stack">
+              <h3>人ではなく条件で表現し直す</h3>
+              <p>
+                RCA2 の考え方に沿い、個人名や性格ではなく、どの条件が失敗を起こしやすくしたかへ書き換えます。
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>検証時のコツ</h2>
+        <div class="grid three">
+          <article class="card">
+            <span class="label">可視化</span>
+            <p>
+              枝ごとに「根拠」を1行添えます。何を見てそう言うのかが曖昧だと、会議で強い人の意見が勝ちやすくなります。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">反証</span>
+            <p>
+              その原因が本当なら、起きないケースには何がないはずかを考えます。反証可能性を持たせると精度が上がります。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">複数原因</span>
+            <p>
+              一つに決め切れないときは無理に一本化せず、主要因と副要因の形で残します。複雑問題ではそのほうが現実的です。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>避けたいパターン</h2>
+        <div class="grid two">
+          <article class="callout bad">
+            <h3>記憶だけで確定する</h3>
+            <p>
+              「たしかいつもそうだった」で枝を決めると、例外条件や最近の変化を見落とします。
+            </p>
+          </article>
+          <article class="callout bad">
+            <h3>個人の失敗へ還元する</h3>
+            <p>
+              再発防止より責任整理に寄ります。条件、表示、タイミング、引き継ぎ、負荷に戻して書きます。
+            </p>
+          </article>
+          <article class="callout bad">
+            <h3>証拠の強さを区別しない</h3>
+            <p>
+              ログ確認済みの枝と、ヒアリング1件だけの枝を同列に扱うと判断を誤ります。
+            </p>
+          </article>
+          <article class="callout bad">
+            <h3>単独原因に決め打ちする</h3>
+            <p>
+              PSNet が指摘するように、複雑系では単一路線化が危険です。複数の contributing factors を保持します。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>検証メモ テンプレート</h2>
+        <article class="template">
+          <pre>枝 / 仮説:
+確認状態:
+根拠の種類:
+何を見たか:
+起きるケース:
+起きないケース:
+反証はあるか:
+原因表現を書き換えるなら:</pre>
+        </article>
+      </section>
+
+      <section class="section">
+        <h2>参照ソース</h2>
+        <ul class="refs">
+          <li><a href="https://www.lean.org/the-lean-post/articles/five-whys-animation/">Lean Enterprise Institute: Clarifying the ‘5 Whys’ Problem-Solving Method</a></li>
+          <li><a href="https://www.ihi.org/library/tools/5-whys-finding-root-cause">Institute for Healthcare Improvement: 5 Whys: Finding the Root Cause</a></li>
+          <li><a href="https://www.ihi.org/library/tools/rca2-improving-root-cause-analyses-and-actions-prevent-harm">Institute for Healthcare Improvement: RCA2</a></li>
+          <li><a href="https://psnet.ahrq.gov/issue/problem-5-whys">PSNet: The problem with the '5 whys.'</a></li>
+        </ul>
+        <div class="footer-nav">
+          <a href="./04-five-whys.html">前の要素へ</a>
+          <a href="./index.html">目次へ戻る</a>
+          <a href="./06-countermeasures.html">次の要素へ</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

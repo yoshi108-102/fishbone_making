@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>フィッシュボーン分析のコツとトヨタ式なぜなぜ分析</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f2ede5;
+        --paper: #fffdf9;
+        --ink: #1f1a16;
+        --muted: #62584d;
+        --line: #d8cab7;
+        --accent: #1f5a4e;
+        --accent-soft: #dceee9;
+        --accent-deep: #153d35;
+        --warm: #9a4a24;
+        --warm-soft: #f6e4d8;
+        --good: #2e5d3a;
+        --good-soft: #e3f1e5;
+        --bad: #7c342a;
+        --bad-soft: #f9e2de;
+        --shadow: 0 18px 42px rgba(43, 32, 18, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at right top, rgba(31, 90, 78, 0.1), transparent 28%),
+          radial-gradient(circle at left 10% top 18%, rgba(154, 74, 36, 0.08), transparent 22%),
+          linear-gradient(180deg, #e9dfd1 0, var(--bg) 280px);
+        font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+        line-height: 1.74;
+      }
+
+      .page {
+        width: min(1160px, calc(100% - 32px));
+        margin: 24px auto 56px;
+      }
+
+      .hero,
+      .section {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero {
+        padding: 32px;
+      }
+
+      .section {
+        padding: 26px 28px;
+        margin-top: 18px;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        margin: 0;
+        line-height: 1.3;
+      }
+
+      h1 {
+        margin-top: 12px;
+        font-size: clamp(30px, 4vw, 46px);
+        font-family: "Iowan Old Style", "Palatino Linotype", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      }
+
+      h2 {
+        margin-bottom: 14px;
+        font-size: 25px;
+        font-family: "Iowan Old Style", "Palatino Linotype", "Hiragino Mincho ProN", "Yu Mincho", serif;
+      }
+
+      h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+
+      h4 {
+        margin-bottom: 8px;
+        font-size: 15px;
+      }
+
+      p,
+      ul,
+      ol,
+      table,
+      pre {
+        margin: 0;
+      }
+
+      p + p,
+      p + ul,
+      p + ol,
+      ul + p,
+      ol + p,
+      .stack > * + * {
+        margin-top: 10px;
+      }
+
+      ul,
+      ol {
+        padding-left: 1.2em;
+      }
+
+      li + li {
+        margin-top: 7px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent-deep);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .lead {
+        margin-top: 16px;
+        max-width: 78ch;
+        color: var(--muted);
+      }
+
+      .key-line {
+        margin-top: 20px;
+        padding: 14px 16px;
+        border-left: 4px solid var(--accent);
+        border-radius: 16px;
+        background: linear-gradient(135deg, #f6fbf9, #fff);
+        font-weight: 700;
+      }
+
+      .meta {
+        margin-top: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .meta span {
+        padding: 5px 10px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #fff;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .grid.two {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+
+      .grid.three {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .card,
+      .callout,
+      .step,
+      .branch,
+      .qa,
+      .template {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: #fff;
+      }
+
+      .card,
+      .callout,
+      .branch,
+      .qa,
+      .template {
+        padding: 16px;
+      }
+
+      .callout.primary {
+        background: linear-gradient(135deg, #f4fbf8, #fff);
+      }
+
+      .callout.warn {
+        background: linear-gradient(135deg, #fff7f1, #fff);
+        border-color: #e8cdbd;
+      }
+
+      .callout.good {
+        background: linear-gradient(135deg, #f4fbf5, #fff);
+        border-color: #cfe3d3;
+      }
+
+      .callout.bad {
+        background: linear-gradient(135deg, #fff6f4, #fff);
+        border-color: #ecc8c2;
+      }
+
+      .step-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 78px 1fr;
+        gap: 14px;
+        padding: 16px;
+      }
+
+      .step-no {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        border-radius: 14px;
+        background: var(--accent-soft);
+        color: var(--accent-deep);
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 0.05em;
+      }
+
+      .fishbone {
+        position: relative;
+        min-height: 480px;
+        margin-top: 14px;
+        padding: 26px 24px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background:
+          linear-gradient(135deg, rgba(220, 238, 233, 0.32), transparent 45%),
+          #fff;
+      }
+
+      .spine {
+        position: absolute;
+        left: 10%;
+        right: 20%;
+        top: 50%;
+        height: 6px;
+        border-radius: 999px;
+        background: var(--accent);
+        transform: translateY(-50%);
+      }
+
+      .head {
+        position: absolute;
+        right: 4%;
+        top: 50%;
+        width: min(220px, 24vw);
+        padding: 16px 18px;
+        border-radius: 20px;
+        background: var(--warm);
+        color: #fff;
+        transform: translateY(-50%);
+        box-shadow: 0 14px 28px rgba(122, 56, 26, 0.18);
+      }
+
+      .head small {
+        display: block;
+        opacity: 0.82;
+        font-size: 12px;
+      }
+
+      .bones {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px 26px;
+        padding-right: 220px;
+      }
+
+      .branch {
+        position: relative;
+        max-width: 360px;
+        background: rgba(255, 255, 255, 0.95);
+      }
+
+      .branch.top {
+        margin-bottom: 84px;
+      }
+
+      .branch.bottom {
+        margin-top: 84px;
+      }
+
+      .branch::after {
+        content: "";
+        position: absolute;
+        width: 78px;
+        height: 2px;
+        background: var(--accent);
+        right: -62px;
+      }
+
+      .branch.top::after {
+        top: calc(100% + 10px);
+        transform: rotate(24deg);
+        transform-origin: left center;
+      }
+
+      .branch.bottom::after {
+        bottom: calc(100% + 10px);
+        transform: rotate(-24deg);
+        transform-origin: left center;
+      }
+
+      .branch-title {
+        display: inline-block;
+        margin-bottom: 10px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent-deep);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .branch ul {
+        padding-left: 1.1em;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        min-width: 860px;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        padding: 12px 10px;
+        border-top: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        color: var(--muted);
+        font-weight: 700;
+        background: #fffcf8;
+      }
+
+      .qa-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .qa h3 {
+        margin-bottom: 6px;
+      }
+
+      .prompt {
+        font-weight: 700;
+        color: var(--accent-deep);
+      }
+
+      .template {
+        background:
+          linear-gradient(180deg, rgba(220, 238, 233, 0.28), transparent 26%),
+          #fff;
+      }
+
+      .template pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        font-family: "SFMono-Regular", "Menlo", "Consolas", monospace;
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .check {
+        display: grid;
+        gap: 10px;
+      }
+
+      .check-item {
+        padding: 12px 14px;
+        border: 1px dashed var(--line);
+        border-radius: 14px;
+        background: #fff;
+      }
+
+      @media (max-width: 900px) {
+        .fishbone {
+          min-height: auto;
+          padding-bottom: 160px;
+        }
+
+        .spine {
+          left: 8%;
+          right: 12%;
+        }
+
+        .bones {
+          grid-template-columns: 1fr;
+          padding-right: 0;
+        }
+
+        .branch,
+        .branch.top,
+        .branch.bottom {
+          margin: 0;
+          max-width: none;
+        }
+
+        .branch::after {
+          display: none;
+        }
+
+        .head {
+          right: 24px;
+          left: 24px;
+          top: auto;
+          bottom: 20px;
+          width: auto;
+          transform: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          width: min(100% - 20px, 1160px);
+          margin: 14px auto 36px;
+        }
+
+        .hero,
+        .section {
+          padding: 20px;
+          border-radius: 18px;
+        }
+
+        .step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <span class="eyebrow">Fishbone x Toyota Why-Why</span>
+        <h1>フィッシュボーン分析のコツ</h1>
+        <p class="lead">
+          自分で要素を考えながら原因を整理したいときは、先にフィッシュボーンで「原因の棚」を作り、その後で各枝をトヨタ式のなぜなぜ分析で深掘りすると扱いやすくなります。ポイントは、思いつきを並べることではなく、<strong>MECEに近づけること</strong>と、<strong>因果関係がつながっているかを一段ずつ確かめること</strong>です。
+        </p>
+        <p class="key-line">
+          先に「分類」、次に「因果」、最後に「対策」。これを崩さないと、魚の骨がただの意見リストになります。
+        </p>
+        <div class="meta">
+          <span>用途: 問題の構造化</span>
+          <span>重視点: MECE / 因果 / 現場事実</span>
+          <span>向いている場面: 原因が散らばる課題</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>まず押さえる前提</h2>
+        <div class="grid three">
+          <article class="card">
+            <h3>1. 主語を固定する</h3>
+            <p>
+              「何が悪いか」ではなく、「何が起きていて困るのか」をひとつに絞ります。問題文がぶれると、枝の比較も深掘りも崩れます。
+            </p>
+          </article>
+          <article class="card">
+            <h3>2. 大骨は切り口</h3>
+            <p>
+              大骨は答えではなく分類軸です。人・方法・情報・設備・運用・環境のように、原因候補が重複しにくい切り口で置きます。
+            </p>
+          </article>
+          <article class="card">
+            <h3>3. 小骨は因果でつなぐ</h3>
+            <p>
+              「関係ありそう」ではなく、「この要因があると次の事象が起きる」と言える形でつなぎます。飛躍があれば分解不足です。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>フィッシュボーンの基本形</h2>
+        <p>
+          まずは大骨をMECE寄りに並べ、各大骨の中でだけ「なぜ」を掘ります。大骨のあいだを行き来すると、分類と因果が混ざって整理しにくくなります。
+        </p>
+        <div class="fishbone">
+          <div class="spine"></div>
+          <div class="bones">
+            <article class="branch top">
+              <span class="branch-title">大骨A: 人</span>
+              <ul>
+                <li>担当者の判断基準が統一されていない</li>
+                <li>優先順位の認識がずれている</li>
+                <li>教育後の定着確認が弱い</li>
+              </ul>
+            </article>
+            <article class="branch top">
+              <span class="branch-title">大骨B: 方法</span>
+              <ul>
+                <li>手順が例外条件をカバーしていない</li>
+                <li>確認ステップが作業終盤に偏っている</li>
+                <li>引き継ぎ時の判断ルールが曖昧</li>
+              </ul>
+            </article>
+            <article class="branch bottom">
+              <span class="branch-title">大骨C: 情報</span>
+              <ul>
+                <li>必要情報の更新が遅れる</li>
+                <li>参照元が複数あり食い違う</li>
+                <li>現場で見える形に整理されていない</li>
+              </ul>
+            </article>
+            <article class="branch bottom">
+              <span class="branch-title">大骨D: 環境・道具</span>
+              <ul>
+                <li>入力画面で見落としが起きやすい</li>
+                <li>作業負荷が時間帯で偏る</li>
+                <li>異常検知が作業者任せになっている</li>
+              </ul>
+            </article>
+          </div>
+          <div class="head">
+            <small>問題・結果</small>
+            問題事象を具体文で置く
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>進め方のコツ</h2>
+        <div class="step-list">
+          <article class="step">
+            <div class="step-no">STEP 1</div>
+            <div class="stack">
+              <h3>問題文を観察可能な表現にする</h3>
+              <p>
+                「品質が悪い」では広すぎます。<strong>いつ・どこで・何が・どれだけ起きているか</strong>まで置きます。
+              </p>
+              <div class="callout primary">
+                例: 「月末の申請処理で差し戻し率が高い」より、「月末3営業日の申請処理で、初回承認後の差し戻し率が18%まで上がる」のほうが分析しやすいです。
+              </div>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 2</div>
+            <div class="stack">
+              <h3>大骨は重ならない切り口で置く</h3>
+              <p>
+                最初から正解でなくていいですが、同じ原因が複数の大骨に入りそうなら切り方を見直します。MECEは完全達成より、<strong>重複を減らす意識</strong>が重要です。
+              </p>
+              <div class="callout warn">
+                「教育不足」と「スキル不足」を別の大骨に置くと、ほぼ同じ話を二重計上しやすくなります。
+              </div>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 3</div>
+            <div class="stack">
+              <h3>各枝でトヨタ式に1段ずつなぜを問う</h3>
+              <p>
+                「なぜ起きたか」を飛ばして結論に行かず、その直前の事象だけを説明する原因を置きます。問いは常に「その現象は、なぜ直前で起きたのか」です。
+              </p>
+              <div class="callout good">
+                良い深掘り: 「差し戻しが多い」→「必須項目の欠落が多い」→「入力時に不足を検知できない」→「画面上で必須条件が分散している」
+              </div>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 4</div>
+            <div class="stack">
+              <h3>推測で止めず、現場事実で確かめる</h3>
+              <p>
+                トヨタ式の肝は、犯人探しではなく再現条件の特定です。枝ごとに、観察・記録・ヒアリング・ログで裏づけできるかを見ます。
+              </p>
+              <div class="callout primary">
+                枝の末端は「直せる原因」か「確認すべき仮説」になっているのが理想です。
+              </div>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 5</div>
+            <div class="stack">
+              <h3>対策は原因の真下に置く</h3>
+              <p>
+                対策は問題に直接ぶつけず、最後に確認できた原因へ対応させます。原因と対策の対応が1対1に近いほど、打ち手の検証もしやすくなります。
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>トヨタ式なぜなぜ分析で守りたい問い方</h2>
+        <div class="qa-list">
+          <article class="qa">
+            <h3>問い1: その一段前に何が起きていたか</h3>
+            <p class="prompt">「なぜそうなったのか」ではなく、「この事象の直前に何が成立していたから、こうなったのか」と問う。</p>
+            <p>
+              抽象語を避け、事象レベルでつなぐと因果の飛躍が減ります。
+            </p>
+          </article>
+          <article class="qa">
+            <h3>問い2: それは本当に同じ枝の話か</h3>
+            <p class="prompt">「この原因は人の問題か、方法の問題か、情報の問題か」を確認する。</p>
+            <p>
+              枝をまたぐなら、原因の表現が粗い可能性があります。表現を細かくして枝を戻します。
+            </p>
+          </article>
+          <article class="qa">
+            <h3>問い3: その原因は観察できるか</h3>
+            <p class="prompt">「誰かがそう感じた」ではなく、「何を見ればそう言えるか」を問う。</p>
+            <p>
+              事実確認できない枝は、原因ではなく仮説として扱うほうが安全です。
+            </p>
+          </article>
+          <article class="qa">
+            <h3>問い4: その原因を消すと問題は減るか</h3>
+            <p class="prompt">「仮にこの原因がなくなったら、問題事象は減るか」と逆向きに確認する。</p>
+            <p>
+              減らないなら、その枝は本質原因ではなく相関要因かもしれません。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>MECEと因果関係を保つためのチェック表</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>確認ポイント</th>
+                <th>良い状態</th>
+                <th>崩れている状態</th>
+                <th>修正の仕方</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>問題定義</td>
+                <td>現象が具体的で、観察単位がそろっている</td>
+                <td>「遅い」「悪い」など評価語だけになっている</td>
+                <td>発生場面、件数、頻度、影響を足して具体化する</td>
+              </tr>
+              <tr>
+                <td>大骨のMECE</td>
+                <td>同じ原因が複数カテゴリに入りにくい</td>
+                <td>分類軸と原因語が混在している</td>
+                <td>大骨を切り口、小骨を原因に分けて書き直す</td>
+              </tr>
+              <tr>
+                <td>小骨の因果</td>
+                <td>一段前の事象を説明している</td>
+                <td>結論に飛ぶ、精神論に寄る</td>
+                <td>中間事象を挟んで1段ずつ分解する</td>
+              </tr>
+              <tr>
+                <td>事実確認</td>
+                <td>ログ、観察、現場証言で確かめられる</td>
+                <td>思い込みで固定している</td>
+                <td>仮説ラベルを付け、確認方法を横に書く</td>
+              </tr>
+              <tr>
+                <td>対策接続</td>
+                <td>末端原因に対応する対策になっている</td>
+                <td>気合い、注意喚起だけで終わる</td>
+                <td>仕組み変更、見える化、工程変更に落とす</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>やってはいけないパターン</h2>
+        <div class="grid two">
+          <article class="callout bad">
+            <h3>人を原因にして止める</h3>
+            <p>
+              「注意不足」「意識が低い」で止めると再発防止に進みません。なぜ注意が抜ける条件になっていたかまで掘る必要があります。
+            </p>
+          </article>
+          <article class="callout bad">
+            <h3>対策を原因として書く</h3>
+            <p>
+              「チェック体制がない」は便利ですが粗い表現です。どの工程で、何を、誰が見落とすのかに戻してから書いたほうが因果が見えます。
+            </p>
+          </article>
+          <article class="callout bad">
+            <h3>複数原因を1本に詰め込む</h3>
+            <p>
+              「忙しくて教育も不足していて確認も甘い」は3本の枝です。1文にまとめると検証も対策も曖昧になります。
+            </p>
+          </article>
+          <article class="callout bad">
+            <h3>5回にこだわりすぎる</h3>
+            <p>
+              「なぜ5回」は回数の儀式ではありません。原因が制御可能な粒度になったら止め、必要なら3回でも7回でも構いません。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>自分で埋めるためのテンプレート</h2>
+        <div class="grid two">
+          <article class="template">
+            <h3>1. 問題定義</h3>
+            <pre>問題事象:
+いつ:
+どこで:
+何が:
+どれだけ:
+困る影響:</pre>
+          </article>
+          <article class="template">
+            <h3>2. 大骨設計</h3>
+            <pre>大骨A:
+大骨B:
+大骨C:
+大骨D:
+必要なら大骨E:</pre>
+          </article>
+          <article class="template">
+            <h3>3. なぜなぜ掘り下げ</h3>
+            <pre>枝名:
+事象:
+なぜ1:
+なぜ2:
+なぜ3:
+なぜ4:
+確認できる事実:
+未確認なら確認方法:</pre>
+          </article>
+          <article class="template">
+            <h3>4. 対策整理</h3>
+            <pre>末端原因:
+対応策:
+実施主体:
+いつ確認するか:
+効果指標:</pre>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>最後のセルフチェック</h2>
+        <div class="check">
+          <div class="check-item">問題文を読んだだけで、現場のどの現象かイメージできるか。</div>
+          <div class="check-item">同じ小骨が複数の大骨に重複していないか。</div>
+          <div class="check-item">各小骨は、ひとつ上の事象を直接説明しているか。</div>
+          <div class="check-item">末端原因は、事実確認できるか、または確認方法が書かれているか。</div>
+          <div class="check-item">対策は「気をつける」ではなく、仕組みや条件を変える内容になっているか。</div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

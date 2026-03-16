@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>04 トヨタ式なぜなぜ | フィッシュボーン分析 要素別レポート</title>
+    <link rel="stylesheet" href="./report.css" />
+    <style>
+      :root {
+        --accent: #7b2f54;
+        --accent-soft: #f3dfeb;
+        --accent-deep: #54203a;
+        --warm: #8a4e1f;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <nav class="topbar">
+        <a href="./index.html">目次へ戻る</a>
+        <a href="./03-causal-branching.html">前へ: 因果の枝づくり</a>
+        <span>04 / 06 トヨタ式なぜなぜ</span>
+        <a href="./05-evidence-validation.html">次へ: 事実確認と検証</a>
+      </nav>
+
+      <section class="hero">
+        <span class="eyebrow">Element 04</span>
+        <h1>トヨタ式なぜなぜ</h1>
+        <p class="lead">
+          5 Whys は「5回」が本質ではありません。ASQ は
+          <strong>5回より少ないことも多いし、多いこともある</strong>
+          と説明し、魚骨図と併用できると述べています。Lean Enterprise Institute の John Shook も、回数ではなく
+          <strong>なぜの品質</strong>と
+          <strong>逆向きの therefore chain</strong>
+          を重視しています。
+        </p>
+        <p class="summary-line">
+          良いなぜは、直前の事象を説明します。悪いなぜは、責任を押しつけるか、最短距離で好みの結論に飛びます。
+        </p>
+        <div class="meta">
+          <span>役割: 枝を深く掘る</span>
+          <span>重要前提: 現場理解と現状把握</span>
+          <span>停止条件: 制御可能で検証可能な粒度</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>5 Whys の基本原則</h2>
+        <div class="grid two">
+          <article class="card">
+            <span class="label">原則 1</span>
+            <p>
+              ひとつ上の現象を説明する原因だけを答える。飛び越えない。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">原則 2</span>
+            <p>
+              current state を確認しながら進める。思い込みで枝を確定しない。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">原則 3</span>
+            <p>
+              逆向きに therefore で戻れるか確かめる。戻れないなら因果が切れている。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">原則 4</span>
+            <p>
+              人の失敗で止めず、条件・仕組み・判断基準まで掘る。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>良い問いと悪い問い</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>場面</th>
+                <th>良い問い</th>
+                <th>悪い問い</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>入力ミス</td>
+                <td>なぜ入力時に不足を検知できなかったのか</td>
+                <td>なぜ担当者は注意しなかったのか</td>
+              </tr>
+              <tr>
+                <td>遅延</td>
+                <td>なぜこの工程で待ち時間が発生するのか</td>
+                <td>なぜ現場はもっと頑張れないのか</td>
+              </tr>
+              <tr>
+                <td>仕様漏れ</td>
+                <td>なぜ例外条件が仕様レビューで見えなかったのか</td>
+                <td>なぜ設計者は気づかなかったのか</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>細かいコツ</h2>
+        <div class="step-list">
+          <article class="step">
+            <div class="step-no">TIP 1</div>
+            <div class="stack">
+              <h3>一回ごとに「何を説明しているか」を明示する</h3>
+              <p>
+                why を重ねると、いつのまにか元の問題ではなく別の話を掘り始めがちです。「今はこの一段上の現象を説明している」と口に出すとずれにくくなります。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">TIP 2</div>
+            <div class="stack">
+              <h3>複数回答が出たら分岐させる</h3>
+              <p>
+                ひとつの why に複数のもっともらしい答えがあるなら、その時点で枝分かれです。一本に押し込むと後で検証不能になります。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">TIP 3</div>
+            <div class="stack">
+              <h3>専門性のある人と現場知識を入れる</h3>
+              <p>
+                LEI は正しい問いを立てるには問題が起きた業務への深い理解が必要だと指摘しています。知らない人だけで why を回すと、もっともらしい物語になりやすいです。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">TIP 4</div>
+            <div class="stack">
+              <h3>止めどころは「直せる粒度」</h3>
+              <p>
+                回数で止めず、制御可能で検証可能な条件に到達したら止めます。3回でも7回でも構いません。
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>5 Whys 単独使用の注意</h2>
+        <div class="grid two">
+          <article class="callout warn">
+            <h3>複雑系では一本化しすぎる</h3>
+            <p>
+              PSNet は、医療のような複雑なシステムでは 5 Whys だけだと単純化しすぎると指摘しています。複数要因や相互作用があるときは fishbone や他の RCA ツールと併用すべきです。
+            </p>
+          </article>
+          <article class="callout warn">
+            <h3>責任追及になりやすい</h3>
+            <p>
+              「なぜやらなかったのか」と人へ向けると、防御的な会話になります。プロセス、判断条件、情報の流れに問いを向けたほうが再発防止に近づきます。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>書き込みテンプレート</h2>
+        <article class="template">
+          <pre>対象の事象:
+why 1:
+why 2:
+why 3:
+why 4:
+why 5:
+逆向き therefore:
+ここで止める理由:
+別枝として扱う要因:</pre>
+        </article>
+      </section>
+
+      <section class="section">
+        <h2>参照ソース</h2>
+        <ul class="refs">
+          <li><a href="https://asq.org/quality-resources/five-whys">ASQ: Five Whys and Five Hows</a></li>
+          <li><a href="https://www.lean.org/lexicon-terms/5-whys/">Lean Enterprise Institute: 5 Whys</a></li>
+          <li><a href="https://www.lean.org/the-lean-post/articles/five-whys-animation/">Lean Enterprise Institute: Clarifying the ‘5 Whys’ Problem-Solving Method</a></li>
+          <li><a href="https://psnet.ahrq.gov/issue/problem-5-whys">PSNet: The problem with the '5 whys.'</a></li>
+          <li><a href="https://www.ihi.org/library/tools/5-whys-finding-root-cause">Institute for Healthcare Improvement: 5 Whys: Finding the Root Cause</a></li>
+        </ul>
+        <div class="footer-nav">
+          <a href="./03-causal-branching.html">前の要素へ</a>
+          <a href="./index.html">目次へ戻る</a>
+          <a href="./05-evidence-validation.html">次の要素へ</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

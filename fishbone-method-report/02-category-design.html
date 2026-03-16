@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>02 大骨設計 | フィッシュボーン分析 要素別レポート</title>
+    <link rel="stylesheet" href="./report.css" />
+    <style>
+      :root {
+        --accent: #315b37;
+        --accent-soft: #dfefe2;
+        --accent-deep: #213e26;
+        --warm: #915220;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <nav class="topbar">
+        <a href="./index.html">目次へ戻る</a>
+        <a href="./01-problem-framing.html">前へ: 問題定義</a>
+        <span>02 / 06 大骨設計</span>
+        <a href="./03-causal-branching.html">次へ: 因果の枝づくり</a>
+      </nav>
+
+      <section class="hero">
+        <span class="eyebrow">Element 02</span>
+        <h1>大骨設計</h1>
+        <p class="lead">
+          魚骨図の大骨は、答えではなく
+          <strong>原因を並べるための分類軸</strong>
+          です。ASQ は Ishikawa の 6M を代表例として挙げつつ、利用者に合わせてカテゴリ名を工夫することも認めています。IHI も、原因がカテゴリで自然にまとまるなら classic fishbone、工程別に見たいなら process-type fishbone を使うとしています。
+        </p>
+        <p class="summary-line">
+          コツは、6Mを暗記して使うことではなく、「同じ原因を二重計上しにくい棚」をつくることです。ここで MECE の発想が効きます。
+        </p>
+        <div class="meta">
+          <span>役割: 原因候補の棚づくり</span>
+          <span>基本参照: 6M / Process Fishbone</span>
+          <span>補助原理: MECE</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>大骨設計の基本パターン</h2>
+        <div class="grid three">
+          <article class="card">
+            <span class="label">6M型</span>
+            <p>
+              Materials, Machinery, Methods, Measurement, Manpower, Mother Nature。製造や品質管理の初期設計に向きます。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">プロセス型</span>
+            <p>
+              IHI が勧める工程別の cause-and-effect。受付、審査、承認、引き継ぎのように、流れに沿って原因を置きます。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">カスタム型</span>
+            <p>
+              情報、ルール、UI、需要変動、依存先など、領域特有の切り口に置き換えます。サービスやソフトウェアではこちらが実務的です。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>MECEをどう当てるか</h2>
+        <div class="grid two">
+          <article class="callout primary">
+            <h3>Mutually Exclusive</h3>
+            <p>
+              各カテゴリが重なりにくいことです。McKinsey の Barbara Minto は、よいグルーピングは
+              <strong>mutually exclusive and collectively exhaustive</strong>
+              であるべきだと述べています。魚骨図に応用するなら、同じ原因が複数の大骨に入りにくい状態を目指します。
+            </p>
+          </article>
+          <article class="callout primary">
+            <h3>Collectively Exhaustive</h3>
+            <p>
+              重要な原因群が抜けにくいことです。完全網羅を保証するというより、抜けやすい論点を棚の段階で減らす実務上の工夫として使うのが現実的です。
+            </p>
+          </article>
+        </div>
+        <p class="note">
+          ここでの MECE 適用は、魚骨図の公式ルールではなく、Barbara Minto の整理原則を分析設計に応用した解釈です。
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>大骨を選ぶコツ</h2>
+        <div class="step-list">
+          <article class="step">
+            <div class="step-no">TIP 1</div>
+            <div class="stack">
+              <h3>責任単位ではなく因子単位で切る</h3>
+              <p>
+                「営業」「開発」「管理部」のような部署切りは、責任整理には便利でも原因整理には粗いことがあります。まずは方法、情報、環境、判断条件など因子で切ったほうが因果が見えます。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">TIP 2</div>
+            <div class="stack">
+              <h3>分類軸と原因語を混ぜない</h3>
+              <p>
+                大骨に「教育不足」「手順不備」を置くと、それ自体が原因になってしまいます。大骨は「人」「方法」「情報」のような棚、小骨に原因を書きます。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">TIP 3</div>
+            <div class="stack">
+              <h3>対象領域に合わせて6Mを崩す</h3>
+              <p>
+                ASQ もカテゴリ名の創意工夫を認めています。ソフトウェアや知識労働では「Measurement」を「可視化・モニタリング」に、「Machinery」を「ツール・UI」に置き換えたほうが使いやすいことがあります。
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>設計例</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>文脈</th>
+                <th>候補カテゴリ</th>
+                <th>狙い</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>製造</td>
+                <td>Materials / Machinery / Methods / Measurement / Manpower / Environment</td>
+                <td>従来の品質管理観点を漏らしにくい</td>
+              </tr>
+              <tr>
+                <td>サービス運用</td>
+                <td>人 / 手順 / 情報 / ツール / 負荷 / 外部条件</td>
+                <td>情報不足や繁閑差を扱いやすい</td>
+              </tr>
+              <tr>
+                <td>ソフトウェア運用</td>
+                <td>仕様 / 実装 / テスト / 監視 / デプロイ / 依存先</td>
+                <td>工程と技術要因を分けやすい</td>
+              </tr>
+              <tr>
+                <td>業務フロー改善</td>
+                <td>受付 / 判断 / 実行 / 引き継ぎ / 例外処理</td>
+                <td>process-type fishbone として使える</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>セルフチェック</h2>
+        <div class="checklist">
+          <div class="check-item">大骨名は「棚」になっていて、原因そのものになっていないか。</div>
+          <div class="check-item">同じ小骨が複数カテゴリに入りそうなら、カテゴリの切り方を見直せるか。</div>
+          <div class="check-item">この問題領域に 6M が本当に合っているか。工程別のほうが自然ではないか。</div>
+          <div class="check-item">カテゴリ名を見ただけで、参加者が何を書けばよいか想像できるか。</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>参照ソース</h2>
+        <ul class="refs">
+          <li><a href="https://asq.org/quality-resources/fishbone">ASQ: What is a Fishbone Diagram? Ishikawa Cause &amp; Effect Diagram</a></li>
+          <li><a href="https://www.ihi.org/library/tools/cause-and-effect-diagram">Institute for Healthcare Improvement: Cause and Effect Diagram</a></li>
+          <li><a href="https://www.mckinsey.com/alumni/news-and-events/global-news/alumni-news/barbara-minto-mece-i-invented-it-so-i-get-to-say-how-to-pronounce-it">McKinsey: Barbara Minto and MECE</a></li>
+          <li><a href="https://asq.org/about-asq/honorary-members/ishikawa">ASQ: Kaoru Ishikawa</a></li>
+        </ul>
+        <div class="footer-nav">
+          <a href="./01-problem-framing.html">前の要素へ</a>
+          <a href="./index.html">目次へ戻る</a>
+          <a href="./03-causal-branching.html">次の要素へ</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
