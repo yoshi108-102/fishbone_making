@@ -2,7 +2,12 @@
 
 import FishboneCard from "./FishboneCard";
 import FishboneDrawer from "./FishboneDrawer";
-import { useFishboneDocument } from "../hooks/useFishboneDocument";
+import { useFishboneEditor } from "../hooks/fishbone/useFishboneEditor";
+import { useFishboneEditorSubmission } from "../hooks/fishbone/useFishboneEditorSubmission";
+import { useFishboneGraphState } from "../hooks/fishbone/useFishboneGraphState";
+import { useFishbonePersistence } from "../hooks/fishbone/useFishbonePersistence";
+import { useFishboneSelectedNode } from "../hooks/fishbone/useFishboneSelectedNode";
+import { useFishboneSelection } from "../hooks/fishbone/useFishboneSelection";
 import type { FishboneDocument } from "../lib/fishbone-types";
 
 type FishboneBoardProps = {
@@ -12,25 +17,50 @@ type FishboneBoardProps = {
 export default function FishboneBoard({
   initialDocument,
 }: FishboneBoardProps) {
+  const { graph, initialGraph, draftRevisionRef, applyGraph, replaceGraph } =
+    useFishboneGraphState(initialDocument);
   const {
+    selectedNodeId,
     selectedNode,
     children,
     currentDepth,
     canGoUp,
-    editor,
-    isSaving,
-    saveError,
-    updateSelectedField,
-    commitSelectedNode,
     selectChild,
     goToParent,
     goToTop,
+    reconcileSelection,
+  } = useFishboneSelection(graph);
+  const {
+    editor,
     openCreateEditor,
     openEditEditor,
     closeEditor,
     updateEditorField,
-    submitEditor,
-  } = useFishboneDocument(initialDocument);
+    setEditorError,
+  } = useFishboneEditor();
+  const { isSaving, saveError, clearSaveError, persistGraph } =
+    useFishbonePersistence({
+      initialGraph,
+      draftRevisionRef,
+      replaceGraph,
+      reconcileSelection,
+    });
+  const { updateSelectedField, commitSelectedNode } = useFishboneSelectedNode({
+    graph,
+    selectedNodeId,
+    applyGraph,
+    persistGraph,
+    clearSaveError,
+  });
+  const { submitEditor } = useFishboneEditorSubmission({
+    graph,
+    editor,
+    applyGraph,
+    persistGraph,
+    clearSaveError,
+    closeEditor,
+    setEditorError,
+  });
 
   return (
     <main className="workspace-shell">
@@ -93,7 +123,11 @@ export default function FishboneBoard({
         <section className="branch-panel cards-panel">
           <div className="section-row compact">
             <h2>{selectedNode.title ? `${selectedNode.title} の下位要素` : "下位要素"}</h2>
-            <button type="button" className="text-button" onClick={openCreateEditor}>
+            <button
+              type="button"
+              className="text-button"
+              onClick={() => openCreateEditor(selectedNode)}
+            >
               カードを追加
             </button>
           </div>
@@ -128,7 +162,7 @@ export default function FishboneBoard({
         type="button"
         className="floating-add"
         aria-label={`${selectedNode.title || "選択中の要素"}の下にカードを追加`}
-        onClick={openCreateEditor}
+        onClick={() => openCreateEditor(selectedNode)}
       >
         +
       </button>
