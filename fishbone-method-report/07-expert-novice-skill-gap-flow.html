@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>熟練者と新人の差をフィッシュボーンへ落とす進め方</title>
+    <link rel="stylesheet" href="./report.css" />
+    <style>
+      :root {
+        --accent: #315f34;
+        --accent-soft: #e2efe1;
+        --accent-deep: #204225;
+        --warm: #9f552a;
+        --bg: #f2ede3;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <nav class="topbar">
+        <span>Docs / Fishbone Method Report</span>
+        <a href="./index.html">レポート一覧へ</a>
+      </nav>
+
+      <section class="hero">
+        <span class="eyebrow">Working Memo</span>
+        <h1>熟練者と新人の差をフィッシュボーンへ落とす進め方</h1>
+        <p class="lead">
+          今回の詰まりどころは、
+          <strong>問題文</strong>、
+          <strong>分析軸</strong>、
+          <strong>時系列</strong>、
+          <strong>対策案</strong>
+          が同時に混ざっていることでした。そこでこのページでは、丸棒矯正のように
+          <strong>材料状態が変動する現場</strong>
+          を前提にしつつ、
+          <strong>熟練者と新人の差をどう抽出し、どの順で魚骨へ圧縮するか</strong>
+          を一枚に整理します。
+        </p>
+        <p class="summary-line">
+          ここで想定している流れは、
+          <strong>比較問題の固定 → ケース収集 → 差分の聞き出し → マトリクス記述 → 重複の束ね → フィッシュボーン化 → 検証</strong>
+          です。魚骨図は最初のメモ帳ではなく、比較差分を圧縮する後段の器として使います。
+        </p>
+        <div class="meta">
+          <span>対象: 丸棒矯正の熟練差</span>
+          <span>狙い: 暗黙知の抽出</span>
+          <span>前提: 材料状態は変動する</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>最初に固定する前提</h2>
+        <div class="grid three">
+          <article class="card">
+            <span class="label">問題文</span>
+            <p>
+              丸棒矯正工程において、材料や丸棒の状態が変動する条件下でも、熟練者は真直度を安定して規格内に収められるが、新人は状態に応じた見立てと調整を同じように再現できない。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">分析対象</span>
+            <p>
+              分析したいのは
+              <strong>材料差そのもの</strong>
+              ではなく、
+              <strong>材料差にどう反応しているかの差</strong>
+              です。材料状態は記録するが、主枝ではなく比較条件として扱います。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">範囲外</span>
+            <p>
+              「標準書がない」「日報が必要」「教育が足りない」はこの段階では対策候補です。人の差を説明する枝ではなく、あとで打ち手として扱います。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>想定している全体フロー</h2>
+        <div class="workflow">
+          <article class="step">
+            <div class="step-no">STEP 1</div>
+            <div class="stack">
+              <h3>比較問題を一文で固定する</h3>
+              <p>
+                最初に「何の差を比べるのか」を固定します。今回なら品質問題ではなく、
+                <strong>熟練者はできるが新人は再現できない</strong>
+                という比較問題に置きます。
+              </p>
+              <p>
+                この時点で、設備性能や標準化不足の議論には入らず、
+                <strong>人の見立てと進め方の差</strong>
+                に限定します。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 2</div>
+            <div class="stack">
+              <h3>ケースを集める</h3>
+              <p>
+                熟練者と新人の作業を、できれば同じ不良モードで
+                <strong>5〜10 ケースずつ</strong>
+                集めます。ここでは一般論ではなく、1本ごとの実例を扱います。
+              </p>
+              <p>
+                最低限、材料状態、初期形状、測定結果、誰が担当したか、どこで補正したか、結果がどう変わったかを揃えます。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 3</div>
+            <div class="stack">
+              <h3>ケース再生で差分を聞き出す</h3>
+              <p>
+                観察や動画があればそれを見ながら、
+                <strong>「その場で何を見て、どう読んで、次に何を決めたか」</strong>
+                をケース単位で聞きます。抽象論ではなく、その時点の判断材料へ戻します。
+              </p>
+              <p>
+                ここでは対策化せず、まず差分の言語化に集中します。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 4</div>
+            <div class="stack">
+              <h3>マトリクスに差分を書き込む</h3>
+              <p>
+                いきなり魚骨にせず、
+                <strong>技能の型 × フェーズ</strong>
+                のマトリクスに差分を書きます。重複はこの段階では気にしません。
+              </p>
+              <p>
+                ここでの役割は「整理前の広げる工程」です。被りは失敗ではなく、後で束ねるための材料です。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 5</div>
+            <div class="stack">
+              <h3>繰り返し出る差を束ねる</h3>
+              <p>
+                複数のマスに同じ種類の差が出てきたら、それを
+                <strong>フィッシュボーンの主枝候補</strong>
+                にします。たとえば「全体と局所を分けて見る差」が複数の場面で繰り返すなら、
+                `着眼差` のように束ねます。
+              </p>
+              <p>
+                逆に一場面だけにしか出ない差は、主枝ではなく小骨候補として残します。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 6</div>
+            <div class="stack">
+              <h3>フィッシュボーンへ圧縮する</h3>
+              <p>
+                魚骨の主枝は
+                <strong>技能差の型</strong>
+                で切り、フェーズは文脈ラベルとして使います。今回なら
+                `着眼`, `解釈`, `進行`, `確認`
+                のような切り方が候補です。
+              </p>
+              <p>
+                ここでやっと因果を深く掘ります。枝は「なぜ熟練者はできて新人は崩れるのか」を下位で説明する形にします。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 7</div>
+            <div class="stack">
+              <h3>新しいケースで検証する</h3>
+              <p>
+                一度作った枝が本当に効くかを、新しいケースや追加観察で確かめます。説明できない差が残るなら、マトリクスに戻って差分の記述をやり直します。
+              </p>
+              <p>
+                妥当性が見えた後で、初めて教育・標準化・チェックリストなどの打ち手へ進みます。
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>マトリクスの使い方</h2>
+        <p class="note">
+          縦軸は技能の型、横軸はフェーズです。全部を埋める必要はなく、
+          <strong>差が見えるマスだけ</strong>
+          書けば十分です。
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>技能の型</th>
+                <th>初期把握</th>
+                <th>荒矯正</th>
+                <th>追込</th>
+                <th>最終確認</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>着眼</td>
+                <td>最初に何を見る差があるか</td>
+                <td>補正中にどの変化を見る差があるか</td>
+                <td>微小な残りを何で拾う差があるか</td>
+                <td>どこを見て完了とみなす差があるか</td>
+              </tr>
+              <tr>
+                <td>解釈</td>
+                <td>最初の形をどう読む差があるか</td>
+                <td>補正の効き方をどう読む差があるか</td>
+                <td>戻りや残りをどう読む差があるか</td>
+                <td>規格内安定をどう読む差があるか</td>
+              </tr>
+              <tr>
+                <td>進行</td>
+                <td>最初の一手をどう決める差があるか</td>
+                <td>何を先に潰すかの差があるか</td>
+                <td>いつ切り替えるかの差があるか</td>
+                <td>どこで止めるかの差があるか</td>
+              </tr>
+              <tr>
+                <td>確認</td>
+                <td>初手が合っていたかを何で確かめるか</td>
+                <td>補正が効いたと何で判断するか</td>
+                <td>追加補正の要否を何で決めるか</td>
+                <td>次工程へ流せると何でみなすか</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>詰まった時の判定ルール</h2>
+        <div class="grid two">
+          <article class="callout good">
+            <h3>被りが多い時</h3>
+            <p>
+              被りはマトリクス段階では問題ありません。むしろ、
+              <strong>何度も出る差ほど主枝候補</strong>
+              です。たとえば `全体と局所を分けて見る` が複数フェーズで出るなら、フェーズに閉じず `着眼差` として束ねます。
+            </p>
+          </article>
+          <article class="callout warn">
+            <h3>設備や材料へ飛びそうな時</h3>
+            <p>
+              「材質が違うから」はそのままでは枝にしません。
+              <strong>材質差をどう見抜き、どう反応を変えたか</strong>
+              に言い換えます。機械や材料の事実は比較条件として残し、人の差へ翻訳してから書きます。
+            </p>
+          </article>
+          <article class="callout warn">
+            <h3>対策が混ざる時</h3>
+            <p>
+              `記録をつける`, `標準化する`, `教育する`
+              はこの段階では原因ではありません。別メモへ退避させ、魚骨には
+              <strong>差そのもの</strong>
+              だけを残します。
+            </p>
+          </article>
+          <article class="callout bad">
+            <h3>魚骨が早すぎる時</h3>
+            <p>
+              主枝名が決まらないうちに魚骨へ入ると、枝が太りすぎるか、フェーズと技能が混ざります。迷ったら、
+              <strong>まずケース記述とマトリクスに戻る</strong>
+              方が安定します。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>ケース再生で聞く問い</h2>
+        <div class="grid two">
+          <article class="card soft">
+            <h3>事実に戻す問い</h3>
+            <ul>
+              <li>最初にどこを見たか。</li>
+              <li>その形をどう読んだか。</li>
+              <li>何を先にやることにしたか。</li>
+              <li>途中でどこで見方や進め方を変えたか。</li>
+              <li>どこを見て一旦止めたか。</li>
+            </ul>
+          </article>
+          <article class="card soft">
+            <h3>避ける問い</h3>
+            <ul>
+              <li>普段どうしていますか、だけで終わる一般論。</li>
+              <li>なぜできないのか、という人格寄りの問い。</li>
+              <li>どう教育すべきか、という対策先行の問い。</li>
+              <li>材料が悪いから、設備が悪いから、で止まる問い。</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>この流れの位置づけ</h2>
+        <div class="grid two">
+          <article class="callout primary">
+            <h3>このページの立場</h3>
+            <p>
+              ここでの進め方は、ASQ と IHI の
+              <strong>cause-and-effect diagram</strong>
+              の基本原則と、APQC や NASA が扱う
+              <strong>tacit knowledge capture / elicitation</strong>
+              の考え方を組み合わせた実務的な推奨フローです。単一の原典がこの順番をそのまま指定しているわけではなく、
+              <strong>複数ソースからの構成的な提案</strong>
+              です。
+            </p>
+          </article>
+          <article class="callout primary">
+            <h3>なぜマトリクスを先に置くか</h3>
+            <p>
+              魚骨は原因候補を圧縮する図として強い一方、熟練差のような
+              <strong>場面依存の暗黙知</strong>
+              を最初から載せると、技能軸、フェーズ軸、対策軸が混ざりやすいです。先にマトリクスで広げ、後で主枝へ束ねる方が構造が安定します。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>参考サイト</h2>
+        <ul class="refs">
+          <li>
+            <a href="https://asq.org/quality-resources/fishbone">ASQ: What is a Fishbone Diagram? Ishikawa Cause &amp; Effect Diagram</a>
+            <br />
+            fishbone の基本手順、カテゴリ設定、枝の深さの扱いを確認するための基礎資料。
+          </li>
+          <li>
+            <a href="https://www.ihi.org/library/tools/cause-and-effect-diagram">Institute for Healthcare Improvement: Cause and Effect Diagram</a>
+            <br />
+            classic fishbone と process-type fishbone の使い分けを押さえる参考。
+          </li>
+          <li>
+            <a href="https://www.apqc.org/resource-library/resource-listing/structured-knowledge-transfer">APQC: Structured Knowledge Transfer</a>
+            <br />
+            熟練者の頭の中にある tacit knowledge を特定し、引き継ぐという考え方の整理に有用。
+          </li>
+          <li>
+            <a href="https://www.apqc.org/training/knowledge-elicitation">APQC: Knowledge Elicitation</a>
+            <br />
+            知識の特定、聞き出し、整理、ギャップ確認までの進め方を確認する入口。
+          </li>
+          <li>
+            <a href="https://www.nasa.gov/history/history-publications-and-resources/oral-histories/nasa-list/">NASA: Oral History Project List</a>
+            <br />
+            first-hand experience, lessons learned, methodologies, institutional memory を oral history で残す考え方の参考。
+          </li>
+          <li>
+            <a href="https://www.lean.org/the-lean-post/articles/five-whys-animation/">Lean Enterprise Institute: Clarifying the ‘5 Whys’ Problem-Solving Method</a>
+            <br />
+            魚骨で束ねた差分を、後段でどのように直前因果へ絞り込むかを見る参考。
+          </li>
+        </ul>
+        <p class="note">
+          参考サイトのうち fishbone 関連は図の基本原則、APQC と NASA は暗黙知の収集と引き継ぎの考え方を見るために選んでいます。
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>今回の進め方を一文でいうと</h2>
+        <article class="template">
+          <pre>品質問題をそのまま魚骨にしない。まず「熟練者はできるが新人は再現できない」という比較問題に置き換え、
+ケースごとの差分をマトリクスで広げ、何度も出る差だけを主枝として魚骨へ圧縮する。</pre>
+        </article>
+        <div class="footer-nav">
+          <a href="./index.html">一覧へ戻る</a>
+          <a href="./02-category-design.html">02. 大骨設計へ</a>
+          <a href="./03-causal-branching.html">03. 因果の枝づくりへ</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

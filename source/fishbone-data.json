@@ -4,31 +4,73 @@
     {
       "id": "root",
       "parentId": null,
-      "title": "丸棒の加工精度が悪い",
+      "title": "熟練者は丸棒矯正において真直度を安定して規格内に収められるが、新人は再現性が低い",
       "notes": "丸棒をプレスした時に、細かい曲がりがたくさん発生してしまう。"
     },
     {
       "id": "current-state",
       "parentId": "root",
-      "title": "現状",
+      "title": "観察",
       "notes": "いま何が起きているか。頻度、場所、影響の出方などを分解します。"
+    },
+    {
+      "id": "9896db30-d67f-4f6c-8567-56f1b9786e9f",
+      "parentId": "current-state",
+      "title": "初期把握",
+      "notes": ""
+    },
+    {
+      "id": "a879c052-75a3-4132-9c0c-c0c265f2686e",
+      "parentId": "9896db30-d67f-4f6c-8567-56f1b9786e9f",
+      "title": "曲がりの位置観察",
+      "notes": ""
+    },
+    {
+      "id": "8b4ed314-882d-4921-9592-4b7cbb6ea849",
+      "parentId": "9896db30-d67f-4f6c-8567-56f1b9786e9f",
+      "title": "曲がりの大きさ観察",
+      "notes": ""
+    },
+    {
+      "id": "1391177d-39b8-4956-b32a-ccba31398bd1",
+      "parentId": "current-state",
+      "title": "荒調整",
+      "notes": ""
+    },
+    {
+      "id": "c2868982-ae99-4744-bd77-c2e47ab677df",
+      "parentId": "current-state",
+      "title": "局所調整",
+      "notes": ""
+    },
+    {
+      "id": "ccc5823b-75d6-4518-94ac-30eb1b01188b",
+      "parentId": "current-state",
+      "title": "確認",
+      "notes": ""
+    },
+    {
+      "id": "31dc2170-30e6-44ee-89df-3a3474cff8d4",
+      "parentId": "current-state",
+      "title": "中間部分の調整",
+      "notes": ""
     },
     {
       "id": "desired-state",
       "parentId": "root",
-      "title": "理想状態",
+      "title": "解釈",
       "notes": "本来どうなっていてほしいか。基準や期待値を書きます。"
     },
     {
       "id": "gap",
       "parentId": "root",
-      "title": "ギャップ",
+      "title": "操作",
       "notes": "現状と理想の差分を観察単位で分けます。"
     },
     {
       "id": "point-of-cause",
       "parentId": "root",
-      "title": "発生点候補",
+      "title": "確認",
       "notes": "どこから why を始めると良いかの候補を置きます。"
     }
   ]
