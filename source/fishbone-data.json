@@ -5,7 +5,7 @@
       "id": "root",
       "parentId": null,
       "title": "熟練者は丸棒矯正において真直度を安定して規格内に収められるが、新人は再現性が低い",
-      "notes": "一次枝は「何がうまくできないか」で切る。二次枝は「そのために何を見たいか、何を決めたいか、何が邪魔をするか」を、そのまま読んで意味が通る言葉にする。"
+      "notes": "一次枝は「何がうまくできないか」で切る。場所を決めることと押す場所を判断することはまとめ、別に実際に押す枝を立てる。"
     },
     {
       "id": "recognition",
@@ -53,55 +53,61 @@
       "id": "localization",
       "parentId": "root",
       "title": "曲がっている場所を決める",
-      "notes": "どこが主な曲がりで、どこを直す対象にするかを定めること。"
+      "notes": "どこが主な曲がりで、どこを押すべき場所とみなすかを定めること。"
     },
     {
       "id": "localization-target",
       "parentId": "localization",
-      "title": "どの場所を見つけたいか",
-      "notes": "主な曲がり位置、押す候補の位置、回転後も追うべき同じ場所。"
+      "title": "どの場所を狙うか",
+      "notes": "主な曲がり位置、押すべき候補の位置、回転後も追うべき同じ場所。"
     },
     {
       "id": "localization-criteria",
       "parentId": "localization",
       "title": "どこだと判断する決め手は何か",
-      "notes": "どこを主な曲がりの場所とみなし、どこを押す候補の場所とみなすのか。"
+      "notes": "どこを主な曲がりの場所とみなし、どこを押すべき場所とみなすのか。"
+    },
+    {
+      "id": "translation-criteria-press-position",
+      "parentId": "localization-criteria",
+      "title": "押す場所が合っているか判断しにくい",
+      "notes": "プレス時に選んだ場所が本当に正しいとみなせる基準が弱く、押す場所の妥当性を判断しづらい。"
     },
     {
       "id": "localization-method",
       "parentId": "localization",
-      "title": "どうやって場所を追うか",
+      "title": "どうやって場所を見定めるか",
       "notes": "回転の前後で同じ場所を追う、全体と局所を分けて見る、奥行きを補いながら位置を読むなど、場所を定めるやり方。"
     },
     {
       "id": "localization-obstacle",
       "parentId": "localization",
-      "title": "何が場所を見失わせるか",
+      "title": "何が場所決めを難しくするか",
       "notes": "回転で見失う、手前が強く見える、中央のブレが大きい、歪みが重なるなど、場所決めを崩すもの。"
+    },
+    {
+      "id": "translation-obstacle-tornado-position",
+      "parentId": "localization-obstacle",
+      "title": "トルネード型だと押す場所を決めにくい",
+      "notes": "複数方向の歪みが重なるため、どこを主に押せばよいかへ結びつけづらい。"
     },
     {
       "id": "translation",
       "parentId": "root",
-      "title": "どこを押すか決める",
-      "notes": "見えた曲がりを、押す場所、向き、強さに結びつけること。"
+      "title": "曲がってる場所を押す",
+      "notes": "決めた場所に対して、実際にどの向きでどれくらい押すかを決めて実行すること。"
     },
     {
       "id": "translation-target",
       "parentId": "translation",
-      "title": "何を押す判断に変えるか",
-      "notes": "見えた曲がりを、押す場所、押す向き、押す強さへ変えること。"
+      "title": "何を押し方として決めるか",
+      "notes": "押す向き、押す強さ、どのくらい当てるかなど、実際の押し方。"
     },
     {
       "id": "translation-criteria",
       "parentId": "translation",
-      "title": "どこを押せばよいと判断するか",
-      "notes": "どこを押せば効くのか、どれくらい押せば足りるのかという決め方。"
-    },
-    {
-      "id": "translation-criteria-press-position",
-      "parentId": "translation-criteria",
-      "title": "押す場所が合っているか判断しにくい",
-      "notes": "プレス時に選んだ場所が本当に正しいとみなせる基準が弱く、押す場所の妥当性を判断しづらい。"
+      "title": "どれくらい押せばよいとみなすか",
+      "notes": "押し量や押し当て方について、足りる・やりすぎをどう判断するのか。"
     },
     {
       "id": "translation-criteria-force-hard-material",
@@ -112,20 +118,14 @@
     {
       "id": "translation-method",
       "parentId": "translation",
-      "title": "どうやって押し所に落とすか",
-      "notes": "一方向ずつ分ける、奥の曲がりを手前の位置感覚に置き換えるなど、見えた形を押し方へ落とすやり方。"
+      "title": "どうやって押すか",
+      "notes": "決めた場所へ、どんな押し方で力をかけるのか。"
     },
     {
       "id": "translation-obstacle",
       "parentId": "translation",
-      "title": "何が押し所を決めにくくするか",
-      "notes": "トルネード型、硬い素材、遠近感、視点切替時のぼやけなど、押す場所の判断を崩すもの。"
-    },
-    {
-      "id": "translation-obstacle-tornado-position",
-      "parentId": "translation-obstacle",
-      "title": "トルネード型だと押す場所に落としにくい",
-      "notes": "複数方向の歪みが重なるため、どこを押せば効くかへ結びつけづらい。"
+      "title": "何が押し方を迷わせるか",
+      "notes": "押す強さの目安が弱い、押した感触と見た目がつながらないなど、実際の押し方を決めにくくするもの。"
     },
     {
       "id": "evaluation",
