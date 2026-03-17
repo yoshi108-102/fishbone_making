@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>得られたフィッシュボーン分析からなぜなぜ分析へ進むラフフロー</title>
+    <link rel="stylesheet" href="./report.css" />
+    <style>
+      :root {
+        --accent: #25596d;
+        --accent-soft: #dcedf3;
+        --accent-deep: #173946;
+        --warm: #9b5628;
+        --bg: #eef0eb;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <nav class="topbar">
+        <a href="./index.html">目次へ戻る</a>
+        <a href="./04-five-whys.html">参考: 04 トヨタ式なぜなぜ</a>
+        <a href="./07-expert-novice-skill-gap-flow.html">参考: 07 熟練差の進め方</a>
+        <span>Working Memo / Fishbone to Why-Why</span>
+      </nav>
+
+      <section class="hero">
+        <span class="eyebrow">Working Memo</span>
+        <h1>得られたフィッシュボーン分析からなぜなぜ分析へ進むラフフロー</h1>
+        <p class="lead">
+          今回の魚骨はすでに
+          <strong>「熟練者はできるが新人は再現しにくい」</strong>
+          という比較問題を、
+          <strong>見る</strong>、
+          <strong>場所を決める</strong>、
+          <strong>押す</strong>、
+          <strong>確かめる</strong>、
+          <strong>順番を決める</strong>、
+          <strong>精度を保つ</strong>
+          に分けられています。なので次は、魚骨全体をもう一度広げるのではなく、
+          <strong>どの枝から why を始めるか</strong>
+          と
+          <strong>どの単位で一段ずつ掘るか</strong>
+          を固定する段階です。
+        </p>
+        <p class="summary-line">
+          雑に言うと、
+          <strong>根本問題から直接 why を始めない</strong>、
+          <strong>一つのケースを選ぶ</strong>、
+          <strong>魚骨の葉に近い具体ノードから直前原因を掘る</strong>、
+          <strong>枝が分かれたら分岐のまま残す</strong>
+          という順で進めるのがよさそうです。
+        </p>
+        <div class="meta">
+          <span>対象: 丸棒矯正の熟練差</span>
+          <span>入力: 既存フィッシュボーン</span>
+          <span>出力: Why-Whyの起点と進め方</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>最初に決めること</h2>
+        <div class="grid three">
+          <article class="card">
+            <span class="label">ケース単位</span>
+            <p>
+              「新人は再現性が低い」をそのまま why しないで、
+              <strong>どの材料・どの形状・どの作業場面で崩れたか</strong>
+              を一件に絞ります。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">起点ノード</span>
+            <p>
+              起点は大枝ではなく、
+              <strong>二次枝か三次枝</strong>
+              に置きます。抽象枝から始めると、why が一般論へ逃げやすいです。
+            </p>
+          </article>
+          <article class="card">
+            <span class="label">観察事実</span>
+            <p>
+              そのノードが本当に起きたといえる
+              <strong>見えた事実</strong>
+              を一行で置きます。仮説だけで掘ると、あとで戻れなくなります。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>ざっくりした進め方</h2>
+        <div class="workflow">
+          <article class="step">
+            <div class="step-no">STEP 1</div>
+            <div class="stack">
+              <h3>失敗ケースを一件選ぶ</h3>
+              <p>
+                まずは
+                <strong>新人が規格内に持っていけなかった一件</strong>
+                か、
+                <strong>熟練者なら同条件で通せた比較ケース</strong>
+                を置きます。魚骨は全体構造、why は個別ケースから始めたほうが強いです。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 2</div>
+            <div class="stack">
+              <h3>魚骨のどの枝で崩れたかを決める</h3>
+              <p>
+                今回なら
+                `曲がりを見つける`,
+                `曲がっている場所を決める`,
+                `曲がってる場所を押す`,
+                `押した結果を確かめる`
+                のどこが最初の崩れかを選びます。ポイントは
+                <strong>いちばん手前で崩れた枝</strong>
+                を起点にすることです。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 3</div>
+            <div class="stack">
+              <h3>枝名を観察文へ言い換える</h3>
+              <p>
+                たとえば
+                `押す強さを決める`
+                では広いので、
+                <strong>「硬め素材で押し込み量の目安がつかず、変化が見える前に止めた」</strong>
+                のように、ケースにひもづく文へ変えます。ここが Why-Why の出発点です。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 4</div>
+            <div class="stack">
+              <h3>直前原因だけを一段ずつ掘る</h3>
+              <p>
+                各 why では、
+                <strong>ひとつ上の現象を直接説明する理由</strong>
+                だけを答えます。たとえば「なぜ目安がつかないのか」「なぜその見え方では判断できないのか」のように、
+                いきなり教育不足や標準化不足へ飛ばさないほうが崩れません。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 5</div>
+            <div class="stack">
+              <h3>答えが複数あるなら枝分かれさせる</h3>
+              <p>
+                今回の魚骨はもともと複数要因型です。たとえば
+                `押した結果を確かめる`
+                が弱い理由は、
+                <strong>見方がそろっていない</strong>
+                場合と
+                <strong>変化量の基準がない</strong>
+                場合で別枝です。一本にまとめないで、そのまま分岐として残します。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 6</div>
+            <div class="stack">
+              <h3>逆向きに戻して因果が通るか見る</h3>
+              <p>
+                最後に
+                <strong>therefore で逆向きに言い直せるか</strong>
+                を見ます。戻れない段があれば、そこは飛躍か混線です。魚骨の別枝へ戻るか、問いを一段細かくします。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">STEP 7</div>
+            <div class="stack">
+              <h3>止めどころを「直せる条件」で決める</h3>
+              <p>
+                止める基準は5回ではなく、
+                <strong>作業条件、確認方法、判断基準、見方の固定</strong>
+                のように、
+                現場で変えられる粒度に着いたかです。そこまで来たら、教育・標準・治具・記録の打ち手へつなげます。
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>この魚骨ならどこから始めると掘りやすいか</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>起点候補</th>
+                <th>始めやすい理由</th>
+                <th>最初の why の置き方</th>
+                <th>次に見にいく枝</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>手前と奥を見分ける</td>
+                <td>観察場面に落としやすく、熟練差が出やすい</td>
+                <td>なぜ奥行きの判断がずれたのか</td>
+                <td>見方を切り替える、視線の使い方をそろえる</td>
+              </tr>
+              <tr>
+                <td>押す場所が合っているか判断しにくい</td>
+                <td>見え方と押し位置の翻訳ミスを追いやすい</td>
+                <td>なぜ見えている曲がりを押し位置へ変換できなかったのか</td>
+                <td>主な曲がりを決める、回したあとも同じ場所を追う</td>
+              </tr>
+              <tr>
+                <td>硬め素材だと押す強さの目安がつかみにくい</td>
+                <td>判断基準と前後比較の不足が見えやすい</td>
+                <td>なぜ今回の素材では必要な押し量を見積もれなかったのか</td>
+                <td>押す前後の差を見る、どこまで直ればよいか決める</td>
+              </tr>
+              <tr>
+                <td>同じ見方で確かめる</td>
+                <td>前後比較のブレを事実として押さえやすい</td>
+                <td>なぜ前後で見方が変わり、差が読めなくなったのか</td>
+                <td>押す前後の差を見る、姿勢を保つ</td>
+              </tr>
+              <tr>
+                <td>一方向ずつ分けて直す</td>
+                <td>トルネード型のような複合不良で分岐を作りやすい</td>
+                <td>なぜ複数方向の歪みを分けずに一度で処理しようとしたのか</td>
+                <td>複数の曲がりを分ける、優先順位をつける</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">
+          逆に、
+          <strong>`曲がりを見つける` や `同じ精度で作業を続ける` から直接始めると広すぎる</strong>
+          ので、最初の why の起点には向きません。
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>枝ごとの最初の問いのイメージ</h2>
+        <div class="grid two">
+          <article class="callout primary">
+            <h3>見る系の枝</h3>
+            <p>
+              まず問うのは
+              <strong>「何が見えていなかったか」</strong>
+              より、
+              <strong>「その見方ではなぜ判定できなかったか」</strong>
+              です。視線、角度、距離、片目/両目、回転前後の対応づけへ落とします。
+            </p>
+          </article>
+          <article class="callout primary">
+            <h3>場所決めの枝</h3>
+            <p>
+              問いは
+              <strong>「なぜ押すべき一点へ翻訳できなかったか」</strong>
+              です。全体曲がりと局所曲がりの分離、回転後の追跡、押し位置の基準の有無を見ます。
+            </p>
+          </article>
+          <article class="callout primary">
+            <h3>押し方の枝</h3>
+            <p>
+              問いは
+              <strong>「なぜその向き・強さを選んだのか」</strong>
+              です。素材差への読み替え、当て方の再現、途中での微修正ルールまで掘れます。
+            </p>
+          </article>
+          <article class="callout primary">
+            <h3>確かめ方の枝</h3>
+            <p>
+              問いは
+              <strong>「なぜ効いたか足りないかを判定できなかったのか」</strong>
+              です。前後比較、見方の固定、止め基準、再プレス判断の閾値が主論点です。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>ミーティングの回し方の雑案</h2>
+        <div class="step-list">
+          <article class="step">
+            <div class="step-no">15 MIN</div>
+            <div class="stack">
+              <h3>ケース確認</h3>
+              <p>
+                対象材、初期状態、誰が作業したか、どこで結果が崩れたかをそろえます。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">20 MIN</div>
+            <div class="stack">
+              <h3>魚骨の起点枝を一本選ぶ</h3>
+              <p>
+                大枝ではなく、
+                <strong>二次枝か三次枝を一つだけ</strong>
+                選んで観察文へ言い換えます。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">25 MIN</div>
+            <div class="stack">
+              <h3>Why-Why を掘る</h3>
+              <p>
+                各段で
+                <strong>直前原因か</strong>
+                を確認し、複数答えが出たらその場で分岐させます。
+              </p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-no">15 MIN</div>
+            <div class="stack">
+              <h3>逆向き確認と宿題化</h3>
+              <p>
+                therefore で戻し、足りない証拠だけを宿題にします。対策は最後に短く置く程度で十分です。
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>雑なテンプレート</h2>
+        <article class="template">
+          <pre>対象ケース:
+- 材料状態:
+- 初期の曲がり:
+- 担当:
+- 崩れた場面:
+
+起点にする魚骨ノード:
+- 大枝:
+- 二次枝 / 三次枝:
+- そのノードが起きた事実:
+
+why 1:
+- 直前の現象:
+- なぜ:
+
+why 2:
+- 直前の現象:
+- なぜ:
+
+why 3:
+- 直前の現象:
+- なぜ:
+
+分岐した枝:
+- 枝A:
+- 枝B:
+
+逆向き therefore:
+
+止める理由:
+- 変えられる条件に着いたか:
+- 追加で確かめること:
+
+暫定の打ち手:
+- 見方:
+- 判断基準:
+- 手順 / 標準:
+- 記録 / 教育:</pre>
+        </article>
+      </section>
+
+      <section class="section">
+        <h2>ひとまずの結論</h2>
+        <div class="grid two">
+          <article class="callout good">
+            <h3>この魚骨は Why-Why の前処理としてかなり良い</h3>
+            <p>
+              すでに「何ができないか」が作業機能ごとに切れているので、次は原因を増やすより
+              <strong>どのケースでどの枝が崩れたか</strong>
+              を固定するのが先です。
+            </p>
+          </article>
+          <article class="callout warn">
+            <h3>注意点は抽象枝から始めないこと</h3>
+            <p>
+              `熟練差がある`, `見る力が足りない`, `感覚がない`
+              のような表現から why を始めると、教育論に流れやすいです。葉に近いノードから始めたほうが因果が切れません。
+            </p>
+          </article>
+        </div>
+        <div class="footer-nav">
+          <a href="./index.html">目次へ戻る</a>
+          <a href="./04-five-whys.html">04 を見直す</a>
+          <a href="./07-expert-novice-skill-gap-flow.html">07 を見直す</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

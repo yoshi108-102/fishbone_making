@@ -5,47 +5,47 @@
       "id": "root",
       "parentId": null,
       "title": "熟練者は丸棒矯正において真直度を安定して規格内に収められるが、新人は再現性が低い",
-      "notes": "一次枝は「何がうまくできないか」で切る。場所を決めることと押す場所を判断することはまとめ、別に実際に押す枝を立てる。"
+      "notes": "一次枝は「何がうまくできないか」で切る。二次枝は「邪魔するもの」ではなく、その機能をさらに具体的な作業へ分ける。"
     },
     {
       "id": "recognition",
       "parentId": "root",
       "title": "曲がりを見つける",
-      "notes": "棒がどこでどう曲がっているか、まず目で捉えること。"
+      "notes": "棒がどこでどう曲がっているかを、まず目で捉えること。"
     },
     {
-      "id": "recognition-target",
+      "id": "recognition-overall",
       "parentId": "recognition",
-      "title": "何を見るか",
-      "notes": "どの部位、どの方向、どの大きさの曲がりやまっすぐさを見るのか。"
+      "title": "全体の通りを見る",
+      "notes": "棒全体としてどこが弓なりで、どの区間がまっすぐから外れているかを捉える。"
     },
     {
-      "id": "recognition-criteria",
+      "id": "recognition-local",
       "parentId": "recognition",
-      "title": "どう見えたら曲がりとみなすか",
-      "notes": "何をもって「曲がっている」「まっすぐに近い」「まだ直っていない」とみなすのか。"
+      "title": "細かい曲がりを見る",
+      "notes": "局所の折れ、うねり、微細な曲がりを拾う。"
     },
     {
-      "id": "recognition-method",
+      "id": "recognition-depth",
       "parentId": "recognition",
-      "title": "どうやって見るか",
-      "notes": "片目、俯瞰、転がし、光の見方、姿勢や持ち方など、どんな見方で曲がりを捉えるのか。"
+      "title": "手前と奥を見分ける",
+      "notes": "見えている曲がりが手前側なのか奥側なのか、奥行きを含めて捉える。"
     },
     {
-      "id": "recognition-obstacle",
+      "id": "recognition-viewpoint",
       "parentId": "recognition",
-      "title": "何が見えにくくするか",
-      "notes": "遠近感、模様、光、視点の切替など、見え方を崩すもの。"
+      "title": "見方を切り替える",
+      "notes": "片目、俯瞰、転がし、光の見方などを切り替えて確認する。"
     },
     {
-      "id": "recognition-obstacle-monocular-depth",
-      "parentId": "recognition-obstacle",
+      "id": "recognition-depth-monocular",
+      "parentId": "recognition-depth",
       "title": "片目だと奥行きがつかみにくい",
       "notes": "片目で見る方法では奥行き感覚を取りにくく、奥側の曲がりを立体的に捉えづらい。"
     },
     {
-      "id": "recognition-obstacle-front-dominance",
-      "parentId": "recognition-obstacle",
+      "id": "recognition-depth-front-dominance",
+      "parentId": "recognition-depth",
       "title": "手前の曲がりばかり目に入る",
       "notes": "手前側の曲がりが強く見えて、奥側の曲がりを見落としやすい。"
     },
@@ -56,38 +56,38 @@
       "notes": "どこが主な曲がりで、どこを押すべき場所とみなすかを定めること。"
     },
     {
-      "id": "localization-target",
+      "id": "localization-main",
       "parentId": "localization",
-      "title": "どの場所を狙うか",
-      "notes": "主な曲がり位置、押すべき候補の位置、回転後も追うべき同じ場所。"
+      "title": "主な曲がりを決める",
+      "notes": "全体と局所の中から、まず直すべき主たる曲がりを定める。"
     },
     {
-      "id": "localization-criteria",
+      "id": "localization-press-point",
       "parentId": "localization",
-      "title": "どこだと判断する決め手は何か",
-      "notes": "どこを主な曲がりの場所とみなし、どこを押すべき場所とみなすのか。"
+      "title": "押す位置を決める",
+      "notes": "見えている曲がりを、実際に押す位置へ落とし込む。"
     },
     {
-      "id": "translation-criteria-press-position",
-      "parentId": "localization-criteria",
+      "id": "localization-track",
+      "parentId": "localization",
+      "title": "回したあとも同じ場所を追う",
+      "notes": "棒を回転させたり持ち替えたりしたあとも、同じ曲がり位置を見失わずに追う。"
+    },
+    {
+      "id": "localization-separate",
+      "parentId": "localization",
+      "title": "複数の曲がりを分ける",
+      "notes": "弓なり、局所曲がり、トルネード型など、重なった歪みを分けて考える。"
+    },
+    {
+      "id": "localization-press-point-unclear",
+      "parentId": "localization-press-point",
       "title": "押す場所が合っているか判断しにくい",
       "notes": "プレス時に選んだ場所が本当に正しいとみなせる基準が弱く、押す場所の妥当性を判断しづらい。"
     },
     {
-      "id": "localization-method",
-      "parentId": "localization",
-      "title": "どうやって場所を見定めるか",
-      "notes": "回転の前後で同じ場所を追う、全体と局所を分けて見る、奥行きを補いながら位置を読むなど、場所を定めるやり方。"
-    },
-    {
-      "id": "localization-obstacle",
-      "parentId": "localization",
-      "title": "何が場所決めを難しくするか",
-      "notes": "回転で見失う、手前が強く見える、中央のブレが大きい、歪みが重なるなど、場所決めを崩すもの。"
-    },
-    {
-      "id": "translation-obstacle-tornado-position",
-      "parentId": "localization-obstacle",
+      "id": "localization-separate-tornado",
+      "parentId": "localization-separate",
       "title": "トルネード型だと押す場所を決めにくい",
       "notes": "複数方向の歪みが重なるため、どこを主に押せばよいかへ結びつけづらい。"
     },
@@ -98,34 +98,34 @@
       "notes": "決めた場所に対して、実際にどの向きでどれくらい押すかを決めて実行すること。"
     },
     {
-      "id": "translation-target",
+      "id": "translation-align-head",
       "parentId": "translation",
-      "title": "何を押し方として決めるか",
-      "notes": "押す向き、押す強さ、どのくらい当てるかなど、実際の押し方。"
+      "title": "プレスヘッドの下に合わせる",
+      "notes": "決めた曲がり位置をヘッドの下へ正確に持っていく。"
     },
     {
-      "id": "translation-criteria",
+      "id": "translation-direction",
       "parentId": "translation",
-      "title": "どれくらい押せばよいとみなすか",
-      "notes": "押し量や押し当て方について、足りる・やりすぎをどう判断するのか。"
+      "title": "押す向きを決める",
+      "notes": "どちら向きに力をかけるかを決める。"
     },
     {
-      "id": "translation-criteria-force-hard-material",
-      "parentId": "translation-criteria",
+      "id": "translation-force",
+      "parentId": "translation",
+      "title": "押す強さを決める",
+      "notes": "どれだけ押し込むかを、足りる・やりすぎを避けながら決める。"
+    },
+    {
+      "id": "translation-consistency",
+      "parentId": "translation",
+      "title": "押し方をそろえる",
+      "notes": "当て方、当て直し方、1回ごとの押し方を安定させる。"
+    },
+    {
+      "id": "translation-force-hard-material",
+      "parentId": "translation-force",
       "title": "硬め素材だと押す強さの目安がつかみにくい",
       "notes": "変形した差が見えにくいため、どれくらいのプレス強さが必要かを決めにくい。"
-    },
-    {
-      "id": "translation-method",
-      "parentId": "translation",
-      "title": "どうやって押すか",
-      "notes": "決めた場所へ、どんな押し方で力をかけるのか。"
-    },
-    {
-      "id": "translation-obstacle",
-      "parentId": "translation",
-      "title": "何が押し方を迷わせるか",
-      "notes": "押す強さの目安が弱い、押した感触と見た目がつながらないなど、実際の押し方を決めにくくするもの。"
     },
     {
       "id": "evaluation",
@@ -134,38 +134,38 @@
       "notes": "押したあとに効いたか、足りないか、やりすぎかを確かめること。"
     },
     {
-      "id": "evaluation-target",
+      "id": "evaluation-diff",
       "parentId": "evaluation",
-      "title": "何を確かめるか",
-      "notes": "押したあとに形が変わったか、曲がりが残っているか、規格内に入ったか。"
+      "title": "押す前後の差を見る",
+      "notes": "押す前と後で、形がどれだけ変わったかを見る。"
     },
     {
-      "id": "evaluation-criteria",
+      "id": "evaluation-remaining",
       "parentId": "evaluation",
-      "title": "どこまで変われば足りたとみなすか",
-      "notes": "足りた、やりすぎ、十分、まだ足りないをどう見分けるのか。"
+      "title": "残りの曲がりを見る",
+      "notes": "押したあとにまだ残っている曲がりを見つける。"
     },
     {
-      "id": "evaluation-method",
+      "id": "evaluation-finish",
       "parentId": "evaluation",
-      "title": "どうやって効きを確かめるか",
-      "notes": "プレス前後の差を見る、転がしと目視を照らし合わせる、半分ごとに基準を置くなど、結果の見方。"
+      "title": "どこまで直ればよいか決める",
+      "notes": "どの状態を十分とみなすか、どこで止めるかを決める。"
     },
     {
-      "id": "evaluation-obstacle",
+      "id": "evaluation-view",
       "parentId": "evaluation",
-      "title": "何が効きを見えにくくするか",
-      "notes": "硬い素材で差が出にくい、作業者視点ではまっすぐさがつかみにくい、細かい歪みが増えるなど、結果の確認を崩すもの。"
+      "title": "同じ見方で確かめる",
+      "notes": "見る角度ややり方をそろえて、前後比較や最終確認をぶらさない。"
     },
     {
-      "id": "evaluation-obstacle-insufficient-press-diff",
-      "parentId": "evaluation-obstacle",
+      "id": "evaluation-diff-insufficient-press",
+      "parentId": "evaluation-diff",
       "title": "押し込み不足だと変わったか見えにくい",
       "notes": "押し込み量が足りないと、プレス前後で形が変わったかどうかを確かめにくい。"
     },
     {
-      "id": "evaluation-obstacle-hard-material-diff",
-      "parentId": "evaluation-obstacle",
+      "id": "evaluation-diff-hard-material",
+      "parentId": "evaluation-diff",
       "title": "硬め素材だと変形した差が見えにくい",
       "notes": "割と硬めの素材ではプレス前後の差が出にくく、押した結果を視覚的に判断しにくい。"
     },
@@ -176,28 +176,28 @@
       "notes": "曲がりが複数あるときに、どれからどう直すかを決めること。"
     },
     {
-      "id": "strategy-target",
+      "id": "strategy-start",
       "parentId": "strategy",
-      "title": "何を順番づけるか",
-      "notes": "弓なり、複数の曲がり、トルネード型の歪みなど、どれを先に扱うかを決める対象。"
+      "title": "最初にどこから直すか決める",
+      "notes": "最初の一手をどこに置くかを決める。"
     },
     {
-      "id": "strategy-criteria",
+      "id": "strategy-priority",
       "parentId": "strategy",
-      "title": "何を先にやるかの決め手は何か",
-      "notes": "何を先に取り、どこでやり方を変え、どこで止めるかを決める考え方。"
+      "title": "複数の曲がりに優先順位をつける",
+      "notes": "同時に見えている複数の歪みのうち、どれから処理するかを決める。"
     },
     {
-      "id": "strategy-method",
+      "id": "strategy-split",
       "parentId": "strategy",
-      "title": "どういう順で直していくか",
-      "notes": "一方向ずつ取る、全体から見る、局所から詰める、粗取りから追込へ移るなど、直し方の組み立て。"
+      "title": "一方向ずつ分けて直す",
+      "notes": "トルネード型など複数方向の歪みを分けて処理する組み立て。"
     },
     {
-      "id": "strategy-obstacle",
+      "id": "strategy-stop",
       "parentId": "strategy",
-      "title": "何が順番を迷わせるか",
-      "notes": "曲がりが多い、優先順位が見えない、押しすぎで細かい歪みが増えるなど、直す順番を決めにくくするもの。"
+      "title": "どこで止めるか決める",
+      "notes": "さらに押すか、一旦確認へ戻るか、ここで止めるかを決める。"
     },
     {
       "id": "maintenance",
@@ -206,28 +206,28 @@
       "notes": "姿勢、持ち方、視線、集中を保って、見え方や判断の精度を崩さないこと。"
     },
     {
-      "id": "maintenance-target",
+      "id": "maintenance-posture",
       "parentId": "maintenance",
-      "title": "何を保ち続けるか",
-      "notes": "姿勢、持ち方、視線、集中など、作業の精度を保つための土台。"
+      "title": "姿勢を保つ",
+      "notes": "見え方と押し方がぶれない姿勢を保つ。"
     },
     {
-      "id": "maintenance-criteria",
+      "id": "maintenance-hold",
       "parentId": "maintenance",
-      "title": "どんな状態を保てていればよいか",
-      "notes": "同じ見え方と同じ判断精度を保てている状態。"
+      "title": "棒の持ち方をそろえる",
+      "notes": "回し方、支え方、持ち替え方を一定に保つ。"
     },
     {
-      "id": "maintenance-method",
+      "id": "maintenance-eyes",
       "parentId": "maintenance",
-      "title": "どうやって崩れを防ぐか",
-      "notes": "持ち方、片目と両目の切替、休止、確認のやり方など、再現性を保つ行動。"
+      "title": "視線の使い方をそろえる",
+      "notes": "片目と両目、近くと遠く、俯瞰と正面の見方を安定させる。"
     },
     {
-      "id": "maintenance-obstacle",
+      "id": "maintenance-focus",
       "parentId": "maintenance",
-      "title": "何が精度を崩すか",
-      "notes": "長時間作業、疲労、視界のぼやけ、姿勢の崩れなど、精度維持を邪魔するもの。"
+      "title": "集中を保つ",
+      "notes": "長時間作業でも確認と判断の精度を落としすぎないようにする。"
     }
   ]
 }
