@@ -5,73 +5,187 @@
       "id": "root",
       "parentId": null,
       "title": "熟練者は丸棒矯正において真直度を安定して規格内に収められるが、新人は再現性が低い",
-      "notes": "丸棒をプレスした時に、細かい曲がりがたくさん発生してしまう。"
+      "notes": "一次枝は「何ができないか」、二次枝は「その技能が成立する要件」で切る。材料状態の差は主枝ではなく、どう反応しているかの差として扱う。"
     },
     {
-      "id": "current-state",
+      "id": "recognition",
       "parentId": "root",
-      "title": "観察",
-      "notes": "いま何が起きているか。頻度、場所、影響の出方などを分解します。"
+      "title": "視認",
+      "notes": "棒の曲がりやまっすぐさを、視覚的に安定して捉える機能。"
     },
     {
-      "id": "9896db30-d67f-4f6c-8567-56f1b9786e9f",
-      "parentId": "current-state",
-      "title": "初期把握",
-      "notes": ""
+      "id": "recognition-target",
+      "parentId": "recognition",
+      "title": "対象",
+      "notes": "どの部位、どの方向、どのスケールの曲がりやまっすぐさを捉えるか。"
     },
     {
-      "id": "a879c052-75a3-4132-9c0c-c0c265f2686e",
-      "parentId": "9896db30-d67f-4f6c-8567-56f1b9786e9f",
-      "title": "曲がりの位置観察",
-      "notes": ""
+      "id": "recognition-criteria",
+      "parentId": "recognition",
+      "title": "基準",
+      "notes": "何をもって「見えた」「まっすぐ」「要補正」とみなすか。"
     },
     {
-      "id": "8b4ed314-882d-4921-9592-4b7cbb6ea849",
-      "parentId": "9896db30-d67f-4f6c-8567-56f1b9786e9f",
-      "title": "曲がりの大きさ観察",
-      "notes": ""
+      "id": "recognition-method",
+      "parentId": "recognition",
+      "title": "方法",
+      "notes": "片目、俯瞰、転がし、光の見方、姿勢や持ち方など、どう見て曲がりを検知するか。"
     },
     {
-      "id": "1391177d-39b8-4956-b32a-ccba31398bd1",
-      "parentId": "current-state",
-      "title": "荒調整",
-      "notes": ""
+      "id": "recognition-obstacle",
+      "parentId": "recognition",
+      "title": "阻害",
+      "notes": "遠近法、模様、光の筋、視点切替など、見え方を崩す要因。"
     },
     {
-      "id": "c2868982-ae99-4744-bd77-c2e47ab677df",
-      "parentId": "current-state",
-      "title": "局所調整",
-      "notes": ""
-    },
-    {
-      "id": "ccc5823b-75d6-4518-94ac-30eb1b01188b",
-      "parentId": "current-state",
-      "title": "確認",
-      "notes": ""
-    },
-    {
-      "id": "31dc2170-30e6-44ee-89df-3a3474cff8d4",
-      "parentId": "current-state",
-      "title": "中間部分の調整",
-      "notes": ""
-    },
-    {
-      "id": "desired-state",
+      "id": "localization",
       "parentId": "root",
-      "title": "解釈",
-      "notes": "本来どうなっていてほしいか。基準や期待値を書きます。"
+      "title": "特定",
+      "notes": "どこが主たる曲がりで、どこを押す対象にすべきかを定める機能。"
     },
     {
-      "id": "gap",
-      "parentId": "root",
-      "title": "操作",
-      "notes": "現状と理想の差分を観察単位で分けます。"
+      "id": "localization-target",
+      "parentId": "localization",
+      "title": "対象",
+      "notes": "主たる曲がり位置、押すべき位置、回転後も追うべき同一点。"
     },
     {
-      "id": "point-of-cause",
+      "id": "localization-criteria",
+      "parentId": "localization",
+      "title": "基準",
+      "notes": "どこを主因箇所とみなし、どこを押し位置とみなすか。"
+    },
+    {
+      "id": "localization-method",
+      "parentId": "localization",
+      "title": "方法",
+      "notes": "回転前後で位置を追う、全体と局所を分ける、奥行きを補正して位置を読むなど、場所を定めるやり方。"
+    },
+    {
+      "id": "localization-obstacle",
+      "parentId": "localization",
+      "title": "阻害",
+      "notes": "回転で見失う、手前が強く見える、中央ブレが目立つ、複数歪みが重なるなど、場所の特定を崩す要因。"
+    },
+    {
+      "id": "translation",
       "parentId": "root",
-      "title": "確認",
-      "notes": "どこから why を始めると良いかの候補を置きます。"
+      "title": "変換",
+      "notes": "見えた曲がりを、押す位置、向き、量に結びつける機能。"
+    },
+    {
+      "id": "translation-target",
+      "parentId": "translation",
+      "title": "対象",
+      "notes": "見えた曲がりを押す位置、方向、量へ変換すること。"
+    },
+    {
+      "id": "translation-criteria",
+      "parentId": "translation",
+      "title": "基準",
+      "notes": "ここを押せば効く、これだけ押せば足りるという対応関係。"
+    },
+    {
+      "id": "translation-method",
+      "parentId": "translation",
+      "title": "方法",
+      "notes": "一方向ずつ分ける、奥の曲がりを手前の位置感覚に置き換えるなど、見えた形を操作へ落とすやり方。"
+    },
+    {
+      "id": "translation-obstacle",
+      "parentId": "translation",
+      "title": "阻害",
+      "notes": "トルネード型、硬材、遠近法、視点切替時のぼやけなど、対応付けを崩す要因。"
+    },
+    {
+      "id": "evaluation",
+      "parentId": "root",
+      "title": "見極",
+      "notes": "押した結果や到達状態を判断し、次の手を決める機能。"
+    },
+    {
+      "id": "evaluation-target",
+      "parentId": "evaluation",
+      "title": "対象",
+      "notes": "押した後に変形したか、残りがあるか、規格内に入ったか。"
+    },
+    {
+      "id": "evaluation-criteria",
+      "parentId": "evaluation",
+      "title": "基準",
+      "notes": "足りた、やりすぎ、十分、まだ足りないをどう判定するか。"
+    },
+    {
+      "id": "evaluation-method",
+      "parentId": "evaluation",
+      "title": "方法",
+      "notes": "プレス前後の差分確認、転がしと目視の照合、半分ごとの基準設定など、結果を見るやり方。"
+    },
+    {
+      "id": "evaluation-obstacle",
+      "parentId": "evaluation",
+      "title": "阻害",
+      "notes": "硬材で差分が見えにくい、作業者視点だとまっすぐさが掴みにくい、微細歪みが蓄積するなど、見極めを崩す要因。"
+    },
+    {
+      "id": "strategy",
+      "parentId": "root",
+      "title": "方針",
+      "notes": "複数の歪みをどういう考え方と順で処理するかを決める機能。"
+    },
+    {
+      "id": "strategy-target",
+      "parentId": "strategy",
+      "title": "対象",
+      "notes": "弓なり、複数曲がり、トルネードなどを、どの単位で扱うか。"
+    },
+    {
+      "id": "strategy-criteria",
+      "parentId": "strategy",
+      "title": "基準",
+      "notes": "何を先に取り、どこで切り替え、どこで止めるか。"
+    },
+    {
+      "id": "strategy-method",
+      "parentId": "strategy",
+      "title": "方法",
+      "notes": "一方向から取る、全体と局所を分ける、粗取りから追込へ移るなど、進め方の組み立て。"
+    },
+    {
+      "id": "strategy-obstacle",
+      "parentId": "strategy",
+      "title": "阻害",
+      "notes": "曲がりが多い、優先順位が見えない、押しすぎで細かい歪みが増えるなど、方針を崩す要因。"
+    },
+    {
+      "id": "maintenance",
+      "parentId": "root",
+      "title": "維持",
+      "notes": "姿勢、持ち方、視線、集中を保ちながら同じ精度で作業を続ける機能。"
+    },
+    {
+      "id": "maintenance-target",
+      "parentId": "maintenance",
+      "title": "対象",
+      "notes": "姿勢、持ち方、視線、集中の持続。"
+    },
+    {
+      "id": "maintenance-criteria",
+      "parentId": "maintenance",
+      "title": "基準",
+      "notes": "同じ見え方と同じ判断精度を保てている状態。"
+    },
+    {
+      "id": "maintenance-method",
+      "parentId": "maintenance",
+      "title": "方法",
+      "notes": "持ち方、片目と両目の切替、休止、確認ルーチンなど、再現性を保つ行動。"
+    },
+    {
+      "id": "maintenance-obstacle",
+      "parentId": "maintenance",
+      "title": "阻害",
+      "notes": "長時間作業、疲労、視界のぼやけ、姿勢の崩れなど、精度維持を崩す要因。"
     }
   ]
 }
